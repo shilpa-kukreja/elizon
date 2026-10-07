@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+html, body { overflow-x: hidden; }
+
+@keyframes industry-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.industry-card-enter {
+  animation: industry-fade-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .industry-card-enter,
+  .industry-header-enter {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+
+
+@keyframes shine {
+  0% {
+    left: -120%;
+  }
+
+  100% {
+    left: 150%;
+  }
+}
+
+.animate-shine {
+  animation: shine 2s infinite linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* Expanding radar ring — runs continuously */
+  @keyframes elizon-radar {
+    0% {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    100% {
+      transform: scale(2.1);
+      opacity: 0;
+    }
+  }
+
+  /* Soft breathing glow on the button itself */
+  @keyframes elizon-breathe {
+    0%, 100% {
+      box-shadow: 0 8px 24px var(--glow), 0 0 0 0 var(--glow);
+    }
+    50% {
+      box-shadow: 0 14px 32px var(--glow), 0 0 0 6px transparent;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-\\[marquee_40s_linear_infinite\\] {
+      animation: none;
+    }
+    .elizon-radar,
+    .elizon-breathe {
+      animation: none !important;
+    }
+  }
