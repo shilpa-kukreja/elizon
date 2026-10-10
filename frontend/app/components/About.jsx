@@ -246,7 +246,7 @@ export default function About() {
                 return (
                   <div
                     key={p.title}
-                    className="group text-center p-3 rounded-xl border border-gray-100 hover:border-[#14B8A6]/40 hover:bg-[#14B8A6]/[0.03] transition-all duration-300"
+                    className="group text-center p-3 rounded-xl border border-gray-100 transition-all duration-300"
                   >
                     <span
                       className="inline-flex w-9 h-9 items-center justify-center rounded-lg mb-2 transition-all duration-300 group-hover:text-white"

@@ -12,6 +12,7 @@ import {
   HiOutlineSparkles,
   HiArrowRight,
 } from "react-icons/hi";
+import { FaLeaf, FaMapMarkerAlt } from 'react-icons/fa';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -34,9 +35,9 @@ const FRESH_DARK = "#0D9488";
 
 // ─── Trust row data ─────────────────────────────────────────
 const TRUST_ITEMS = [
-  { icon: HiOutlineTruck, label: "Eco-Friendly" },
-  { icon: HiOutlineRefresh, label: "Made in India" },
-  { icon: HiOutlineShieldCheck, label: "Quality Assured" },
+  { icon: FaLeaf, label: 'Eco-Friendly' },
+  { icon: FaMapMarkerAlt, label: 'Made in India' },
+  { icon: HiOutlineShieldCheck, label: 'Quality Assured' },
 ];
 
 export default function ProductDetailPage() {
@@ -184,13 +185,13 @@ export default function ProductDetailPage() {
                 />
 
                 {/* Category chip */}
-                <span
+                {/* <span
                   className="absolute top-5 left-5 inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-sm"
                   style={{ color: FRESH }}
                 >
                   <HiOutlineSparkles className="text-xs" />
                   {categoryName}
-                </span>
+                </span> */}
               </div>
             </div>
 

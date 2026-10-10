@@ -17,7 +17,6 @@ function validate(payload) {
   const email = (payload.email || "").trim();
   const phone = (payload.phone || "").trim();
   const company = (payload.company || "").trim();
-  const subject = (payload.subject || "").trim();
   const message = (payload.message || "").trim();
 
   if (name.length < 2) errors.push("Please enter your full name.");
@@ -25,26 +24,24 @@ function validate(payload) {
     errors.push("Please enter a valid email address.");
   if (!/^[+\d][\d\s\-()]{7,}$/.test(phone))
     errors.push("Please enter a valid phone number.");
-  if (!subject) errors.push("Please select a subject.");
   if (message.length < 10)
     errors.push("Message must be at least 10 characters long.");
 
   return {
     errors,
-    data: { name, email, phone, company, subject, message },
+    data: { name, email, phone, company, message },
   };
 }
 
 // ═══════════════════════════════════════════════════════════
 //   HTML EMAIL TEMPLATE
 // ═══════════════════════════════════════════════════════════
-function buildHtmlEmail({ name, email, phone, company, subject, message }) {
+function buildHtmlEmail({ name, email, phone, company, message }) {
   const safe = {
     name: escapeHtml(name),
     email: escapeHtml(email),
     phone: escapeHtml(phone),
     company: escapeHtml(company),
-    subject: escapeHtml(subject),
     message: escapeHtml(message).replace(/\n/g, "<br />"),
   };
 
@@ -55,17 +52,19 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
     timeStyle: "short",
   });
 
+  const firstName = safe.name.split(" ")[0];
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>New Enquiry — ${safe.subject}</title>
+<title>New Enquiry — ${safe.name}</title>
 </head>
 <body style="margin:0;padding:0;background:#f4f6f9;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1a1a1a;-webkit-font-smoothing:antialiased;">
 
   <div style="display:none;font-size:1px;color:#f4f6f9;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">
-    New enquiry from ${safe.name} — ${safe.subject}
+    New enquiry from ${safe.name}
   </div>
 
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f4f6f9;padding:32px 16px;">
@@ -102,7 +101,7 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
                 New Website Enquiry
               </p>
               <h1 style="margin:0;font-size:26px;line-height:1.25;color:#ffffff;font-weight:600;letter-spacing:-0.01em;">
-                ${safe.subject}
+                Message from ${safe.name}
               </h1>
             </td>
           </tr>
@@ -142,7 +141,9 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
                 </tr>
 
                 <tr>
-                  <td style="padding:16px 20px;border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:16px 20px;${
+                    safe.company ? "border-bottom:1px solid #e5e7eb;" : ""
+                  }">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="width:130px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9ca3af;font-weight:700;vertical-align:top;padding-top:2px;">Phone</td>
@@ -158,7 +159,7 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
                   safe.company
                     ? `
                 <tr>
-                  <td style="padding:16px 20px;border-bottom:1px solid #e5e7eb;">
+                  <td style="padding:16px 20px;">
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                       <tr>
                         <td style="width:130px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9ca3af;font-weight:700;vertical-align:top;padding-top:2px;">Company</td>
@@ -169,17 +170,6 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
                 </tr>`
                     : ""
                 }
-
-                <tr>
-                  <td style="padding:16px 20px;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-                      <tr>
-                        <td style="width:130px;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#9ca3af;font-weight:700;vertical-align:top;padding-top:2px;">Subject</td>
-                        <td style="font-size:15px;color:#111827;">${safe.subject}</td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
 
               </table>
 
@@ -195,11 +185,9 @@ function buildHtmlEmail({ name, email, phone, company, subject, message }) {
               <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:32px 0 8px;">
                 <tr>
                   <td>
-                    <a href="mailto:${safe.email}?subject=Re: ${encodeURIComponent(
-                      subject
-                    )}"
+                    <a href="mailto:${safe.email}?subject=Re: Your enquiry to Elizon"
                        style="display:inline-block;background:${FRESH};color:#ffffff;font-size:14px;font-weight:600;padding:13px 26px;border-radius:999px;text-decoration:none;letter-spacing:0.02em;">
-                      Reply to ${safe.name.split(" ")[0]}
+                      Reply to ${firstName}
                     </a>
                   </td>
                 </tr>
@@ -275,12 +263,16 @@ export async function POST(request) {
     // 3) Build email
     const html = buildHtmlEmail(data);
 
-    const subject = `New Enquiry — ${data.subject} · ${data.name}`;
+    // Auto-generated subject line — sender name + company (if any)
+    const subjectLine = data.company
+      ? `New Enquiry · ${data.name} (${data.company})`
+      : `New Enquiry · ${data.name}`;
+
     const replyTo = `"${data.name}" <${data.email}>`;
 
     // 4) Send via shared helper
     const info = await sendFormEmail({
-      subject,
+      subject: subjectLine,
       html,
       replyTo,
     });
