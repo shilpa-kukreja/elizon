@@ -22,8 +22,8 @@ import {
 } from "react-icons/hi";
 
 // ─── Palette ────────────────────────────────────────────────
-const BRAND = "#0A367D";     // trust — used sparingly
-const FRESH = "#14B8A6";     // mint-teal — the "clean" accent
+const BRAND = "#0A367D"; // trust — used sparingly
+const FRESH = "#14B8A6"; // mint-teal — the "clean" accent
 const FRESH_SOFT = "rgba(20, 184, 166, 0.12)";
 const FRESH_LINE = "rgba(20, 184, 166, 0.30)";
 
@@ -205,106 +205,106 @@ export default function AboutPage() {
           01 — ABOUT
       ============================================================ */}
       <section className="relative bg-white py-8 lg:py-12 overflow-hidden">
-        {/* <Bubbles count={5000} /> */}
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+    {/* ═══════════════════════════════════════════════════
+        Eyebrow (optional — uncomment if you want the label)
+    ═══════════════════════════════════════════════════ */}
+    {/* <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
+      style={{ color: FRESH }}
+    >
+      <span className="w-8 h-px" style={{ background: FRESH }} />
+      <span>About Elizon</span>
+      <span className="text-gray-300">— 01</span>
+    </motion.div> */}
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
-            style={{ color: FRESH }}
-          >
-            <span className="w-8 h-px" style={{ background: FRESH }} />
-            <span>About Elizon</span>
-            <span className="text-gray-300">— 01</span>
-          </motion.div> */}
+    {/* ═══════════════════════════════════════════════════
+        NEW LAYOUT — text (7) + stats panel (5)
+    ═══════════════════════════════════════════════════ */}
+    <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7 }}
-              className="lg:col-span-7"
-            >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight mb-6">
-                A cleaner home,{" "}
-                <span style={{ color: FRESH }}>a fresher day</span>.
-              </h2>
+      {/* ─── LEFT: Heading + paragraphs ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7 }}
+        className="lg:col-span-7"
+      >
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight mb-6">
+          A cleaner home,{' '}
+          <span style={{ color: FRESH }}>a fresher day</span>.
+        </h2>
 
-              <div className="space-y-5 text-gray-600 leading-relaxed max-w-2xl">
-                <p>
-                  Elizon is a homegrown cleaning-products brand built on one
-                  belief: everyday cleaning should be effective, safe, and
-                  actually enjoyable. From the first scoop of detergent powder
-                  in 1999 to a full range of soaps, toilet cleaners, and
-                  household care essentials today, our focus has never changed —
-                  make cleaning simpler for real families.
-                </p>
+        <div className="space-y-5 text-gray-600 leading-relaxed max-w-2xl">
+          <p>
+            Elizon is a homegrown cleaning-products brand built on one
+            belief: everyday cleaning should be effective, safe, and
+            actually enjoyable. From the first scoop of detergent powder
+            in 1999 to a full range of soaps, toilet cleaners, and
+            household care essentials today, our focus has never changed —
+            make cleaning simpler for real families.
+          </p>
 
-                <p>
-                  Every product that carries the Elizon name is developed with
-                  careful formulation, tested for real-world performance, and
-                  packed to stay fresh on your shelf. Whether it&apos;s the
-                  weekly laundry load, a quick bathroom refresh, or a full
-                  Sunday deep clean, we make sure the job gets done — properly.
-                </p>
-              </div>
-
-              <div className="mt-10 grid grid-cols-3 gap-6 pt-8 border-t border-gray-100">
-                {STATS.map((stat, i) => (
-                  <motion.div
-                    key={stat.label}
-                    custom={i}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                  >
-                    <div
-                      className="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-none tracking-tight mb-2"
-                      style={{ color: BRAND }}
-                    >
-                      {stat.value}
-                    </div>
-
-                    <div className="text-[11px] tracking-[0.2em] uppercase text-gray-500 font-medium">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.15 }}
-              className="lg:col-span-5 relative"
-            >
-              <div className="relative rounded-3xl overflow-hidden border border-gray-100 shadow-[0_20px_60px_rgba(15,23,42,0.10)]">
-                <img
-                  src="/about/about.png"
-                  alt="Elizon cleaning products"
-                  className="w-full  object-cover"
-                />
-              </div>
-
-              {/* Fresh corner accent */}
-              {/* <div
-                className="absolute -bottom-4 -right-4 w-24 h-24 rounded-br-3xl pointer-events-none"
-                style={{
-                  borderBottom: `2px solid ${FRESH}`,
-                  borderRight: `2px solid ${FRESH}`,
-                }}
-              /> */}
-            </motion.div>
-          </div>
+          <p>
+            Every product that carries the Elizon name is developed with
+            careful formulation, tested for real-world performance, and
+            packed to stay fresh on your shelf. Whether it&apos;s the
+            weekly laundry load, a quick bathroom refresh, or a full
+            Sunday deep clean, we make sure the job gets done — properly.
+          </p>
         </div>
-      </section>
+      </motion.div>
+
+      {/* ─── RIGHT: Stats panel ─── */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7, delay: 0.15 }}
+        className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-gray-100"
+      >
+        {/* Small heading above stats */}
+        <p
+          className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.24em] uppercase mb-6"
+          style={{ color: FRESH }}
+        >
+          <span className="w-5 h-px" style={{ background: FRESH }} />
+          By the numbers
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6 lg:gap-7">
+          {STATS.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              custom={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="flex items-baseline gap-4 lg:gap-5"
+            >
+              <div
+                className="text-3xl sm:text-4xl lg:text-5xl font-semibold leading-none tracking-tight"
+                style={{ color: BRAND }}
+              >
+                {stat.value}
+              </div>
+
+              <div className="text-[11px] tracking-[0.2em] uppercase text-gray-500 font-medium lg:max-w-[140px]">
+                {stat.label}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* ============================================================
           02 — PRODUCT RANGE (the heart of the brand)
@@ -391,122 +391,104 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================
-          03 — MISSION & VISION
-      ============================================================ */}
-      <section className="relative bg-white py-8 lg:py-12 overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
+    03 — MISSION & VISION
+============================================================ */}
+<section className="relative bg-white py-8 lg:py-12 overflow-hidden">
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+    <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
+      {/* ---- Mission ---- */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7 }}
+        className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+      >
+        {/* Soft corner glow on hover */}
+        <div
+          className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{ background: `${FRESH}20` }}
+        />
+
+        <div className="relative">
+          {/* Icon badge */}
+          <span
+            className="inline-flex w-14 h-14 items-center justify-center rounded-2xl mb-6 transition-all duration-500 group-hover:scale-105"
+            style={{ background: `${FRESH}15`, color: FRESH }}
+          >
+            <HiOutlineLightningBolt className="text-2xl" />
+          </span>
+
+          {/* Eyebrow */}
+          <p
+            className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
             style={{ color: FRESH }}
           >
-            <span className="w-8 h-px" style={{ background: FRESH }} />
-            <span>Mission & Vision</span>
-            <span className="text-gray-300">— 03</span>
-          </motion.div> */}
+            Our Mission
+          </p>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-            {/* ---- Mission ---- */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7 }}
-              className="group relative bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(15,23,42,0.08)] hover:-translate-y-1 transition-all duration-500"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src="/about/mission.png"
-                  alt="Elizon mission"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" /> */}
+          {/* Heading */}
+          <h3 className="text-2xl font-semibold text-gray-900 leading-snug mb-4">
+            Make everyday cleaning simpler, safer, and more effective.
+          </h3>
 
-                <span
-                  className="absolute top-5 left-5 inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-white/95 backdrop-blur-sm shadow-lg"
-                  style={{ color: FRESH }}
-                >
-                  <HiOutlineLightningBolt className="text-xl" />
-                </span>
-              </div>
-
-              <div className="p-8 lg:p-10">
-                <p
-                  className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
-                  style={{ color: FRESH }}
-                >
-                  Our Mission
-                </p>
-
-                <h3 className="text-2xl font-semibold text-gray-900 leading-snug mb-4">
-                  Make everyday cleaning simpler, safer, and more effective.
-                </h3>
-
-                <p className="text-gray-600 leading-relaxed">
-                  To develop reliable detergents, soaps, toilet cleaners, and
-                  household care products that deliver consistent performance
-                  while being safe for families, gentle on fabrics, and easy to
-                  use every single day.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* ---- Vision ---- */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="group relative bg-white text-black rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(15,23,42,0.14)] hover:-translate-y-1 transition-all duration-500"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src="/about/vision.png"
-                  alt="Elizon vision"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-90"
-                />
-                {/* <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-black/40 to-transparent" /> */}
-
-                <span
-                  className="absolute top-5 left-5 inline-flex w-12 h-12 items-center justify-center rounded-2xl bg-white/10 border border-white/20 backdrop-blur-sm shadow-lg"
-                  style={{ color: FRESH }}
-                >
-                  <HiOutlineEye className="text-xl" />
-                </span>
-              </div>
-
-              {/* Fresh glow */}
-              {/* <div
-                className="absolute top-0 right-0 w-[300px] h-[300px] blur-[100px] rounded-full pointer-events-none"
-                style={{ background: `${FRESH}25` }}
-              /> */}
-
-              <div className="relative p-8 lg:p-10">
-                <p
-                  className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
-                  style={{ color: FRESH }}
-                >
-                  Our Vision
-                </p>
-
-                <h3 className="text-2xl font-semibold leading-snug mb-4">
-                  To become India&apos;s most-loved everyday cleaning brand.
-                </h3>
-
-                <p className="text-gray-400 leading-relaxed">
-                  A household name known not just for what we clean, but for
-                  how we clean — responsibly, thoughtfully, and with a
-                  commitment to freshness that families can feel from the first
-                  wash.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+          {/* Body */}
+          <p className="text-gray-600 leading-relaxed">
+            To develop reliable detergents, soaps, toilet cleaners, and
+            household care products that deliver consistent performance while
+            being safe for families, gentle on fabrics, and easy to use every
+            single day.
+          </p>
         </div>
-      </section>
+      </motion.div>
+
+      {/* ---- Vision ---- */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+      >
+        {/* Soft corner glow on hover */}
+        <div
+          className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{ background: `${FRESH}20` }}
+        />
+
+        <div className="relative">
+          {/* Icon badge */}
+          <span
+            className="inline-flex w-14 h-14 items-center justify-center rounded-2xl mb-6 transition-all duration-500 group-hover:scale-105"
+            style={{ background: `${FRESH}15`, color: FRESH }}
+          >
+            <HiOutlineEye className="text-2xl" />
+          </span>
+
+          {/* Eyebrow */}
+          <p
+            className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
+            style={{ color: FRESH }}
+          >
+            Our Vision
+          </p>
+
+          {/* Heading */}
+          <h3 className="text-2xl font-semibold text-gray-900 leading-snug mb-4">
+            To become India&apos;s most-loved everyday cleaning brand.
+          </h3>
+
+          {/* Body */}
+          <p className="text-gray-600 leading-relaxed">
+            A household name known not just for what we clean, but for how we
+            clean — responsibly, thoughtfully, and with a commitment to
+            freshness that families can feel from the first wash.
+          </p>
+        </div>
+      </motion.div>
+    </div>
+  </div>
+</section>
 
       {/* ============================================================
           04 — VALUES / WHY CHOOSE US
@@ -547,8 +529,8 @@ export default function AboutPage() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="lg:col-span-5 text-gray-600 leading-relaxed"
             >
-              We do not chase gimmicks. We focus on the three things that
-              matter in everyday cleaning — performance, safety, and freshness.
+              We do not chase gimmicks. We focus on the three things that matter
+              in everyday cleaning — performance, safety, and freshness.
             </motion.p>
           </div>
 
@@ -596,7 +578,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-    
       {/* ============================================================
           06 — CTA
       ============================================================ */}

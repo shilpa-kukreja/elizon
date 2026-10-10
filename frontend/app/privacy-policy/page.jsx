@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -16,9 +17,12 @@ import {
   HiOutlinePrinter,
 } from 'react-icons/hi';
 
-// ─── Brand palette (single source of truth) ──────────────────
+// ─── Elizon brand palette ────────────────────────────────────
 const BRAND = '#0A367D';
-const BRAND_DARK = '#082B66';
+const FRESH = '#14B8A6';
+const FRESH_HOVER = '#0D9488';
+const FRESH_SOFT = 'rgba(20, 184, 166, 0.10)';
+const FRESH_LINE = 'rgba(20, 184, 166, 0.30)';
 
 // ─── Animation variants ──────────────────────────────────────
 const fadeUp = {
@@ -26,7 +30,11 @@ const fadeUp = {
   visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] },
+    transition: {
+      duration: 0.6,
+      delay: i * 0.05,
+      ease: [0.22, 1, 0.36, 1],
+    },
   }),
 };
 
@@ -213,30 +221,65 @@ const SECTIONS = [
   },
 ];
 
+// ─── Shared teal icon container ──────────────────────────────
+function ContactIcon({ children, interactive = false }) {
+  return (
+    <span
+      className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl transition-colors duration-300 ${
+        interactive ? 'group-hover:text-white' : ''
+      }`}
+      style={{ background: FRESH_SOFT, color: FRESH }}
+      onMouseEnter={
+        interactive
+          ? (e) => {
+              e.currentTarget.style.background = FRESH;
+            }
+          : undefined
+      }
+      onMouseLeave={
+        interactive
+          ? (e) => {
+              e.currentTarget.style.background = FRESH_SOFT;
+            }
+          : undefined
+      }
+    >
+      {children}
+    </span>
+  );
+}
+
 export default function PrivacyPolicyPage() {
   const [activeId, setActiveId] = useState(SECTIONS[0].id);
 
-  // Track active section on scroll
+  // Track the currently visible policy section.
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveId(entry.target.id);
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
         });
       },
-      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+      {
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0,
+      }
     );
 
     SECTIONS.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (el) observer.observe(el);
+      const element = document.getElementById(section.id);
+      if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
   }, []);
 
   const handlePrint = () => {
-    if (typeof window !== 'undefined') window.print();
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
   };
 
   return (
@@ -244,94 +287,113 @@ export default function PrivacyPolicyPage() {
       <AnnouncementBar />
       <Navbar />
 
-      {/* ============================================================
-          HERO
-      ============================================================ */}
-      <section className="relative bg-[#030712] text-white overflow-hidden">
+      {/* ─── HERO ──────────────────────────────────────────── */}
+      <section className="relative isolate overflow-hidden bg-gray-100 text-gray-900">
+        {/* Soft teal background glow */}
         <div
-          className="absolute top-0 left-1/4 w-[600px] h-[600px] blur-[140px] rounded-full pointer-events-none"
-          style={{ background: `${BRAND}1f` }}
-        />
-        <div
-          className="absolute bottom-0 right-1/4 w-[500px] h-[500px] blur-[140px] rounded-full pointer-events-none"
-          style={{ background: `${BRAND}14` }}
+          className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full blur-3xl"
+          style={{ background: `${FRESH}14` }}
         />
 
         <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none"
+          className="pointer-events-none absolute -bottom-40 -right-24 h-[400px] w-[400px] rounded-full blur-3xl"
+          style={{ background: `${BRAND}0a` }}
+        />
+
+        {/* Subtle grid texture */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.035]"
           style={{
-            backgroundImage:
-              'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+            backgroundImage: `linear-gradient(${BRAND} 1px, transparent 1px), linear-gradient(90deg, ${BRAND} 1px, transparent 1px)`,
             backgroundSize: '60px 60px',
           }}
         />
 
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+        <div className="relative mx-auto max-w-7xl px-6 py-8 sm:py-12">
           {/* Breadcrumb */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-wrap items-center gap-2 text-xs tracking-[0.22em] uppercase text-gray-400 mb-8"
+            className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-gray-500"
           >
-            <Link href="/" className="hover:text-white transition-colors">
+            <Link
+              href="/"
+              className="transition-colors hover:text-[#14B8A6]"
+            >
               Home
             </Link>
-            <HiOutlineChevronRight className="text-xs" style={{ color: BRAND }} />
-            <span className="text-white">Privacy Policy</span>
+
+            <HiOutlineChevronRight
+              className="text-xs"
+              style={{ color: FRESH }}
+            />
+
+            <span className="font-medium text-gray-900">
+              Privacy Policy
+            </span>
           </motion.div>
 
-          <motion.span
+          {/* Legal label */}
+          {/* <motion.span
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-5"
-            style={{ color: BRAND }}
+            className="mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em]"
+            style={{ color: FRESH }}
           >
             <HiOutlineShieldCheck className="text-base" />
-            Legal
-          </motion.span>
+            Legal & Privacy
+          </motion.span> */}
 
+          {/* Main heading */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight mb-6"
+            className="mb-6 text-4xl font-semibold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-6xl"
           >
-            Privacy
-            <br />
-            <span style={{ color: BRAND }}>Policy.</span>
+            Privacy{' '}
+            <span style={{ color: FRESH }}>Policy.</span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.25 }}
-            className="text-base lg:text-lg text-gray-400 leading-relaxed max-w-2xl"
+            className="max-w-2xl text-base leading-relaxed text-gray-600 lg:text-lg"
           >
             This policy explains how Elizon collects, uses, and protects the
             personal information you share with us across our website and
             services.
           </motion.p>
+
+          {/* Teal accent line */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.6, delay: 0.35 }}
+            className="mt-8 h-[3px] w-16 origin-left rounded-full"
+            style={{ background: FRESH }}
+          />
         </div>
       </section>
 
-      {/* ============================================================
-          META STRIP — effective date + print
-      ============================================================ */}
-      <section className="relative bg-gray-50 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-2 text-sm">
+      {/* ─── EFFECTIVE DATE + PRINT ─────────────────────────── */}
+      <section className="relative border-b border-gray-200 bg-white">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-6 py-5 lg:px-12">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 text-sm">
             <div className="flex items-center gap-2 text-gray-600">
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-[11px]">
                 Effective
               </span>
               <span className="font-medium text-gray-900">
                 {EFFECTIVE_DATE}
               </span>
             </div>
+
             <div className="flex items-center gap-2 text-gray-600">
-              <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400">
+              <span className="text-[10px] font-semibold uppercase tracking-[0.16em] text-gray-400 sm:text-[11px]">
                 Last updated
               </span>
               <span className="font-medium text-gray-900">
@@ -340,24 +402,23 @@ export default function PrivacyPolicyPage() {
             </div>
           </div>
 
-          <button
+          {/* <button
+            type="button"
             onClick={handlePrint}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-[#0A367D] transition-colors"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-[#14B8A6]"
           >
             <HiOutlinePrinter className="text-base" />
             Print this page
-          </button>
+          </button> */}
         </div>
       </section>
 
-      {/* ============================================================
-          CONTENT + TOC
-      ============================================================ */}
-      <section className="relative bg-white py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-            {/* ---- MAIN CONTENT ---- */}
-            <article className="lg:col-span-8 order-2 lg:order-1">
+      {/* ─── POLICY CONTENT + TABLE OF CONTENTS ─────────────── */}
+      <section className="relative bg-gray-100 py-8 sm:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12">
+          <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-12">
+            {/* ─── MAIN POLICY CONTENT ──────────────────────── */}
+            <article className="order-2 min-w-0 lg:order-1 lg:col-span-8">
               {SECTIONS.map((section, index) => (
                 <motion.div
                   key={section.id}
@@ -367,42 +428,46 @@ export default function PrivacyPolicyPage() {
                   whileInView="visible"
                   viewport={{ once: true, margin: '-80px' }}
                   id={section.id}
-                  className="scroll-mt-28 mb-14 last:mb-0"
+                  className="mb-8 scroll-mt-28 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-shadow duration-300 hover:shadow-md sm:p-7 lg:mb-10 lg:p-8 last:mb-0"
                 >
-                  {/* Section header */}
-                  <div className="flex items-baseline gap-4 mb-6 pb-4 border-b border-gray-100">
+                  {/* Section heading */}
+                  <div
+                    className="mb-5 flex items-baseline gap-3 border-b pb-4 sm:gap-4"
+                    style={{ borderColor: 'rgba(20, 184, 166, 0.20)' }}
+                  >
                     <span
-                      className="shrink-0 text-[11px] font-semibold tracking-[0.25em]"
-                      style={{ color: BRAND }}
+                      className="shrink-0 text-[11px] font-semibold tracking-[0.2em]"
+                      style={{ color: FRESH }}
                     >
                       {section.num}
                     </span>
-                    <h2 className="text-xl lg:text-2xl font-semibold text-gray-900 leading-snug tracking-tight">
+
+                    <h2 className="text-xl font-semibold leading-snug tracking-tight text-gray-900 lg:text-2xl">
                       {section.title}
                     </h2>
                   </div>
 
-                  {/* Body paragraphs */}
-                  {section.body?.map((p, i) => (
+                  {/* Paragraphs */}
+                  {section.body?.map((paragraph, i) => (
                     <p
                       key={i}
-                      className="text-[15px] lg:text-base text-gray-600 leading-[1.85] mb-5 last:mb-0"
+                      className="mb-4 text-[14px] leading-[1.9] text-gray-600 last:mb-0 sm:text-[15px] lg:text-base"
                     >
-                      {p}
+                      {paragraph}
                     </p>
                   ))}
 
-                  {/* Simple bullet list */}
+                  {/* Bullet list */}
                   {section.list && (
                     <ul className="mt-6 space-y-3">
                       {section.list.map((item, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-3 text-[15px] lg:text-base text-gray-600 leading-relaxed"
+                          className="flex items-start gap-3 text-[14px] leading-relaxed text-gray-600 sm:text-[15px]"
                         >
                           <span
-                            className="shrink-0 w-1.5 h-1.5 rounded-full mt-2.5"
-                            style={{ background: BRAND }}
+                            className="mt-[9px] h-1.5 w-1.5 shrink-0 rounded-full"
+                            style={{ background: FRESH }}
                           />
                           <span>{item}</span>
                         </li>
@@ -410,26 +475,31 @@ export default function PrivacyPolicyPage() {
                     </ul>
                   )}
 
-                  {/* Subsections (used in Section 02) */}
+                  {/* Nested subsections */}
                   {section.subsections && (
-                    <div className="mt-6 space-y-6">
-                      {section.subsections.map((sub, i) => (
+                    <div className="mt-6 space-y-4">
+                      {section.subsections.map((subsection, i) => (
                         <div
                           key={i}
-                          className="bg-gray-50 rounded-2xl border border-gray-100 p-5 lg:p-6"
+                          className="rounded-xl border p-4 sm:p-5"
+                          style={{
+                            background: '#F9FAFB',
+                            borderColor: 'rgba(20, 184, 166, 0.16)',
+                          }}
                         >
-                          <h3 className="text-[15px] font-semibold text-gray-900 mb-4">
-                            {sub.title}
+                          <h3 className="mb-4 text-[14px] font-semibold text-gray-900 sm:text-[15px]">
+                            {subsection.title}
                           </h3>
+
                           <ul className="space-y-3">
-                            {sub.list.map((item, j) => (
+                            {subsection.list.map((item, j) => (
                               <li
                                 key={j}
-                                className="flex items-start gap-3 text-[14px] text-gray-600 leading-relaxed"
+                                className="flex items-start gap-3 text-[13px] leading-relaxed text-gray-600 sm:text-[14px]"
                               >
                                 <span
-                                  className="shrink-0 w-1.5 h-1.5 rounded-full mt-2.5"
-                                  style={{ background: BRAND }}
+                                  className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full"
+                                  style={{ background: FRESH }}
                                 />
                                 <span>{item}</span>
                               </li>
@@ -440,92 +510,81 @@ export default function PrivacyPolicyPage() {
                     </div>
                   )}
 
-                  {/* Note callout */}
+                  {/* Security note */}
                   {section.note && (
                     <div
-                      className="mt-6 flex items-start gap-3 px-5 py-4 rounded-xl border"
+                      className="mt-6 flex items-start gap-3 rounded-xl border px-4 py-4 sm:px-5"
                       style={{
-                        background: `${BRAND}0d`,
-                        borderColor: `${BRAND}33`,
+                        background: FRESH_SOFT,
+                        borderColor: FRESH_LINE,
                       }}
                     >
                       <HiOutlineShieldCheck
-                        className="text-lg shrink-0 mt-0.5"
-                        style={{ color: BRAND }}
+                        className="mt-0.5 shrink-0 text-lg"
+                        style={{ color: FRESH }}
                       />
-                      <p className="text-sm text-gray-700 leading-relaxed">
+
+                      <p className="text-sm leading-relaxed text-gray-700">
                         {section.note}
                       </p>
                     </div>
                   )}
 
-                  {/* Contact card (last section) */}
+                  {/* Contact cards */}
                   {section.contactCard && (
-                    <div className="mt-6 grid sm:grid-cols-3 gap-4">
+                    <div className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                      {/* Email */}
                       <a
                         href="mailto:privacy@elizon.in"
-                        className="group flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-white hover:border-[#0A367D]/30 hover:shadow-[0_12px_32px_rgba(15,23,42,0.06)] transition-all duration-300"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
                       >
-                        <span
-                          className="w-10 h-10 grid place-items-center rounded-xl transition-all duration-300 group-hover:text-white"
-                          style={{ background: `${BRAND}15`, color: BRAND }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = BRAND;
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = `${BRAND}15`;
-                          }}
-                        >
+                        <ContactIcon interactive>
                           <HiOutlineMail className="text-lg" />
-                        </span>
-                        <div>
-                          <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-1">
+                        </ContactIcon>
+
+                        <div className="min-w-0">
+                          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                             Email
                           </p>
-                          <p className="text-sm font-medium text-gray-900">
+
+                          <p className="break-all text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
                             privacy@elizon.in
                           </p>
                         </div>
                       </a>
 
+                      {/* Phone */}
                       <a
                         href="tel:+919876543210"
-                        className="group flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-white hover:border-[#0A367D]/30 hover:shadow-[0_12px_32px_rgba(15,23,42,0.06)] transition-all duration-300"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
                       >
-                        <span
-                          className="w-10 h-10 grid place-items-center rounded-xl transition-all duration-300 group-hover:text-white"
-                          style={{ background: `${BRAND}15`, color: BRAND }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = BRAND;
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = `${BRAND}15`;
-                          }}
-                        >
+                        <ContactIcon interactive>
                           <HiOutlinePhone className="text-lg" />
-                        </span>
-                        <div>
-                          <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-1">
+                        </ContactIcon>
+
+                        <div className="min-w-0">
+                          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                             Phone
                           </p>
-                          <p className="text-sm font-medium text-gray-900">
+
+                          <p className="text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
                             +91 98765 43210
                           </p>
                         </div>
                       </a>
 
-                      <div className="group flex flex-col gap-3 p-5 rounded-2xl border border-gray-100 bg-white">
-                        <span
-                          className="w-10 h-10 grid place-items-center rounded-xl"
-                          style={{ background: `${BRAND}15`, color: BRAND }}
-                        >
+                      {/* Address */}
+                      <div className="flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 sm:p-5">
+                        <ContactIcon>
                           <HiOutlineLocationMarker className="text-lg" />
-                        </span>
+                        </ContactIcon>
+
                         <div>
-                          <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gray-400 mb-1">
+                          <p className="mb-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
                             Mail
                           </p>
-                          <p className="text-sm font-medium text-gray-900 leading-snug">
+
+                          <p className="text-sm font-medium leading-relaxed text-gray-900">
                             Elizon Industrial Park
                             <br />
                             Noida — 201301
@@ -537,86 +596,155 @@ export default function PrivacyPolicyPage() {
                 </motion.div>
               ))}
 
-              {/* Back to top / help strip */}
-              <div className="mt-16 pt-10 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
-                <p className="text-sm text-gray-500">
-                  Still have questions about our privacy practices?
-                </p>
+              {/* Contact CTA */}
+              <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-5 sm:p-7">
+                <div>
+                  <h3 className="text-base font-semibold text-gray-900">
+                    Have questions about your privacy?
+                  </h3>
+
+                  <p className="mt-1 text-sm leading-relaxed text-gray-500">
+                    Our team is here to help with your privacy-related enquiries.
+                  </p>
+                </div>
+
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all duration-300"
-                  style={{ color: BRAND }}
+                  className="group inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                  style={{
+                    background: FRESH,
+                    boxShadow: `0 8px 22px rgba(20, 184, 166, 0.18)`,
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = FRESH_HOVER;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = FRESH;
+                  }}
                 >
                   Contact our team
-                  <HiArrowRight className="text-base" />
+                  <HiArrowRight className="text-base transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
               </div>
             </article>
 
-            {/* ---- STICKY TOC ---- */}
-            <aside className="lg:col-span-4 order-1 lg:order-2">
-              <div className="sticky top-24">
-                <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6">
-                  <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-900 mb-5 pb-3 border-b border-gray-200">
-                    On this page
-                  </p>
-                  <ul className="space-y-1">
-                    {SECTIONS.map((section) => {
-                      const isActive = activeId === section.id;
-                      return (
-                        <li key={section.id}>
-                          <a
-                            href={`#${section.id}`}
-                            className={`flex items-start gap-3 py-2 text-sm leading-snug transition-colors duration-200 ${
-                              isActive
-                                ? 'font-medium'
-                                : 'text-gray-600 hover:text-gray-900'
-                            }`}
-                            style={isActive ? { color: BRAND } : undefined}
-                          >
-                            <span
-                              className={`shrink-0 text-[10px] tracking-widest mt-1 ${
-                                isActive ? '' : 'text-gray-400'
+            {/* ─── STICKY TABLE OF CONTENTS ─────────────────── */}
+            <aside className="order-1 min-w-0 lg:order-2 lg:col-span-4">
+              <div className="space-y-5 lg:sticky lg:top-24">
+                {/* TOC card */}
+                <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
+                  <div className="mb-4 flex items-center gap-3 border-b border-gray-100 pb-4">
+                    <span
+                      className="grid h-9 w-9 place-items-center rounded-xl"
+                      style={{
+                        background: FRESH_SOFT,
+                        color: FRESH,
+                      }}
+                    >
+                      <HiOutlineShieldCheck className="text-lg" />
+                    </span>
+
+                    <div>
+                      <p className="text-sm font-semibold text-gray-900">
+                        On this page
+                      </p>
+                      <p className="mt-0.5 text-xs text-gray-500">
+                        12 policy sections
+                      </p>
+                    </div>
+                  </div>
+
+                  <nav aria-label="Privacy policy sections">
+                    <ul className="space-y-1">
+                      {SECTIONS.map((section) => {
+                        const isActive = activeId === section.id;
+
+                        return (
+                          <li key={section.id}>
+                            <a
+                              href={`#${section.id}`}
+                              aria-current={isActive ? 'location' : undefined}
+                              className={`relative flex items-start gap-3 rounded-lg px-3 py-2.5 text-[13px] leading-snug transition-all duration-200 ${
+                                isActive
+                                  ? 'font-semibold'
+                                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
                               }`}
-                              style={isActive ? { color: BRAND } : undefined}
+                              style={
+                                isActive
+                                  ? {
+                                      color: FRESH_HOVER,
+                                      background: FRESH_SOFT,
+                                    }
+                                  : undefined
+                              }
                             >
-                              {section.num}
-                            </span>
-                            <span>{section.title}</span>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
+                              {isActive && (
+                                <span
+                                  className="absolute bottom-2 left-0 top-2 w-[3px] rounded-full"
+                                  style={{ background: FRESH }}
+                                />
+                              )}
+
+                              <span
+                                className="shrink-0 pt-0.5 text-[10px] tracking-wider"
+                                style={{
+                                  color: isActive ? FRESH : '#9CA3AF',
+                                }}
+                              >
+                                {section.num}
+                              </span>
+
+                              <span>{section.title}</span>
+                            </a>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </nav>
                 </div>
 
-                {/* Quick contact block */}
-                <div className="relative mt-6 bg-[#030712] text-white rounded-2xl p-6 overflow-hidden">
+                {/* Privacy assistance card */}
+                <div className="relative overflow-hidden rounded-2xl border border-[#14B8A6]/20 bg-white p-6 shadow-sm">
+                  {/* Teal decorative glow */}
                   <div
-                    className="absolute top-0 right-0 w-[200px] h-[200px] blur-[80px] rounded-full pointer-events-none"
-                    style={{ background: `${BRAND}30` }}
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl"
+                    style={{ background: `${FRESH}25` }}
                   />
+
                   <div className="relative">
+                    <span
+                      className="mb-4 grid h-11 w-11 place-items-center rounded-xl"
+                      style={{
+                        background: FRESH_SOFT,
+                        color: FRESH,
+                      }}
+                    >
+                      <HiOutlineShieldCheck className="text-xl" />
+                    </span>
+
                     <p
-                      className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
-                      style={{ color: BRAND }}
+                      className="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em]"
+                      style={{ color: FRESH_HOVER }}
                     >
                       Data request?
                     </p>
-                    <h3 className="text-base font-semibold leading-snug mb-3">
+
+                    <h3 className="mb-3 text-lg font-semibold leading-snug text-gray-900">
                       Exercise your privacy rights
                     </h3>
-                    <p className="text-sm text-gray-400 leading-relaxed mb-5">
+
+                    <p className="mb-5 text-sm leading-relaxed text-gray-600">
                       Request access, correction, or deletion of your data — we
                       respond within 5 business days.
                     </p>
+
                     <a
                       href="mailto:privacy@elizon.in"
-                      className="group inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 transition-all duration-300"
-                      style={{ color: BRAND }}
+                      className="group inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-[#0A367D]"
+                      style={{ color: FRESH_HOVER }}
                     >
                       Send a request
-                      <HiArrowRight className="text-base" />
+                      <HiArrowRight className="text-base transition-transform duration-300 group-hover:translate-x-1" />
                     </a>
                   </div>
                 </div>

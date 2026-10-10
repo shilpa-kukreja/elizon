@@ -147,7 +147,7 @@ export default function ShopByCategory({
             className="lg:col-span-7"
           >
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
-              {heading}
+             Choose by <span className='text-[#14B8A6]'>category</span>
             </h2>
           </motion.div>
 

@@ -39,7 +39,7 @@ export default function Footer() {
         { name: 'Home', href: '/' },
         { name: 'About Us', href: '/about' },
         { name: 'All Products', href: '/all-products' },
-        { name: 'Blog', href: '/blogs' },
+        // { name: 'Blog', href: '/blogs' },
         { name: 'Contact Us', href: '/contact' },
       ],
     },
@@ -69,7 +69,7 @@ export default function Footer() {
   const socials = [
     { icon: FaFacebookF, href: 'https://www.facebook.com/', label: 'Facebook' },
     { icon: FaInstagram, href: 'https://www.instagram.com/', label: 'Instagram' },
-    { icon: FaWhatsapp, href: 'https://wa.me/919876543210', label: 'WhatsApp' },
+    // { icon: FaWhatsapp, href: 'https://wa.me/919876543210', label: 'WhatsApp' },
   ];
 
   return (
@@ -212,7 +212,7 @@ export default function Footer() {
         {/* ═══════════════════════════════════════════════════════
             TAG RAIL — horizontal marquee
         ═══════════════════════════════════════════════════════ */}
-        <div className="relative border-t border-b border-white/[0.08] py-6 overflow-hidden">
+        {/* <div className="relative border-t border-b border-white/[0.08] py-6 overflow-hidden">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#030712] to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[#030712] to-transparent z-10" />
 
@@ -230,13 +230,15 @@ export default function Footer() {
               </span>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* ═══════════════════════════════════════════════════════
             BOTTOM BAR
         ═══════════════════════════════════════════════════════ */}
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 border-t border-b border-white/[0.1]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 py-7">
+            
             <p className="text-xs text-gray-500 tracking-wide order-2 md:order-1">
               © {currentYear} Elizon. All rights reserved.
             </p>

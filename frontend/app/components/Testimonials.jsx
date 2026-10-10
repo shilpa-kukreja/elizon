@@ -218,33 +218,34 @@ export default function Testimonials() {
         />
 
         {/* Author */}
-        <div className="flex items-center gap-3 mt-auto">
-          <div className="relative shrink-0">
-            <img
-              src={t.image}
-              alt={t.name}
-              className="w-11 h-11 rounded-full object-cover border border-gray-100"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-              }}
-            />
-            {/* Fallback initial behind the image — visible only if img errors */}
-          </div>
-          <div>
-            <h4 className="text-sm font-semibold text-gray-900 leading-tight">
-              {t.name}
-            </h4>
-            <p className="text-xs text-gray-500 mt-0.5 leading-tight">
-              {t.position}
-            </p>
-            <p
-              className="text-[11px] mt-0.5 font-medium tracking-wide"
-              style={{ color: FRESH }}
-            >
-              {t.company}
-            </p>
-          </div>
-        </div>
+        {/* Author */}
+<div className="flex items-center gap-3 mt-auto">
+  {/* Initial avatar */}
+  <div
+    className="shrink-0 w-11 h-11 grid place-items-center rounded-full text-white text-sm font-semibold select-none"
+    style={{
+      background: `linear-gradient(135deg, ${FRESH} 0%, ${BRAND} 130%)`,
+    }}
+    aria-hidden="true"
+  >
+    {t.name.charAt(0).toUpperCase()}
+  </div>
+
+  <div>
+    <h4 className="text-sm font-semibold text-gray-900 leading-tight">
+      {t.name}
+    </h4>
+    <p className="text-xs text-gray-500 mt-0.5 leading-tight">
+      {t.position}
+    </p>
+    <p
+      className="text-[11px] mt-0.5 font-medium tracking-wide"
+      style={{ color: FRESH }}
+    >
+      {t.company}
+    </p>
+  </div>
+</div>
       </div>
     </div>
   );

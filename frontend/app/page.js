@@ -9,7 +9,8 @@ import Blog from "./components/Blog";
 import CTA from "./components/CTA";
 import Footer from "./components/Footer";
 import TrustBadges from "./components/TrustBadges";
-import Category from "./components/Categories"
+import Category from "./components/Categories";
+import MarketplaceMarquee from "./components/MarketPlace";
 
 export default function Home() {
   return (
@@ -25,7 +26,8 @@ export default function Home() {
    <Products/>
    <Testimonials/>
    <CTA/>
-   <Blog/>
+   {/* <Blog/> */}
+<MarketplaceMarquee/>
    <Footer/>
    </>
   );

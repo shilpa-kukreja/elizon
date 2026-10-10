@@ -19,7 +19,7 @@ const NAV_LINKS = [
   { label: 'Products', href: '/all-products' },
   // { label: 'Solutions', href: '/solutions' },
   { label: 'About', href: '/about' },
-  { label: 'Blog', href: '/blogs' },
+  // { label: 'Blog', href: '/blogs' },
   { label: 'Contact', href: '/contact' },
 ];
 

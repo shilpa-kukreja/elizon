@@ -311,7 +311,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       onFocus={() => setFocused("phone")}
                       onBlur={() => setFocused(null)}
-                      placeholder="+91 98765 43210"
+                      placeholder="+91 98765 xxxxx"
                       className={inputClass("phone")}
                     />
                   </div>
