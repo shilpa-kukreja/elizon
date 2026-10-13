@@ -28,8 +28,8 @@ import {
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = "#0A367D";
-const FRESH = "#14B8A6";
-const FRESH_DARK = "#0D9488";
+const FRESH = "#0292FD";
+const FRESH_DARK = "#0273C9";
 
 // ─── Trust row data ─────────────────────────────────────────
 const TRUST_ITEMS = [
@@ -313,8 +313,7 @@ export default function ProductDetailPage() {
                 Why You&apos;ll Love It
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
-                Key{" "}
-                <span style={{ color: FRESH }}>benefits</span>
+                Key <span style={{ color: FRESH }}>benefits</span>
               </h2>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
                 A few things that make {product.name} stand out in everyday
@@ -327,7 +326,17 @@ export default function ProductDetailPage() {
               {product.benefits.map((benefit, i) => (
                 <div
                   key={i}
-                  className="group relative bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500"
+                  className="group relative bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(15,23,42,0.04)] transition-all duration-500"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.boxShadow = `0 20px 50px rgba(2,146,253,0.10)`;
+                    e.currentTarget.style.borderColor = `${FRESH}4d`;
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.boxShadow = "";
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.transform = "";
+                  }}
                 >
                   {/* Icon badge */}
                   <span
@@ -372,8 +381,7 @@ export default function ProductDetailPage() {
                   Explore More
                 </span>
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
-                  Other{" "}
-                  <span style={{ color: FRESH }}>Elizon ranges</span>
+                  Other <span style={{ color: FRESH }}>Elizon ranges</span>
                 </h2>
                 <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
                   Discover the rest of our everyday cleaning collection.
@@ -404,14 +412,14 @@ export default function ProductDetailPage() {
                   <Link
                     key={cat.id}
                     href={`/product/${cat.product.slug}`}
-                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#14B8A6]/30 hover:shadow-[0_20px_50px_rgba(20,184,166,0.12)] hover:-translate-y-2 transition-all duration-500 h-full"
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#0292FD]/30 hover:shadow-[0_20px_50px_rgba(2,146,253,0.12)] hover:-translate-y-2 transition-all duration-500 h-full"
                   >
                     {/* Image */}
                     <div className="relative aspect-[5/4] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                       <img
                         src={getProductImageSrc(cat.product.image)}
                         alt={cat.product.name}
-                        className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-700"
                       />
 
                       {/* Category chip */}
@@ -432,7 +440,15 @@ export default function ProductDetailPage() {
                       />
 
                       {/* Title */}
-                      <h3 className="text-base lg:text-lg font-semibold text-gray-900 leading-snug line-clamp-2 mb-3 group-hover:text-[#14B8A6] transition-colors">
+                      <h3
+                        className="text-base lg:text-lg font-semibold text-gray-900 leading-snug line-clamp-2 mb-3 transition-colors"
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = FRESH;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = "";
+                        }}
+                      >
                         {cat.product.name}
                       </h3>
 
