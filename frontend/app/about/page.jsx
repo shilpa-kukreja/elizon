@@ -23,9 +23,10 @@ import {
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = "#0A367D"; // trust — used sparingly
-const FRESH = "#14B8A6"; // mint-teal — the "clean" accent
-const FRESH_SOFT = "rgba(20, 184, 166, 0.12)";
-const FRESH_LINE = "rgba(20, 184, 166, 0.30)";
+const FRESH = "#0292FD"; // bright blue — the "clean" accent
+const FRESH_DARK = "#0273C9";
+const FRESH_SOFT = "rgba(2, 146, 253, 0.12)";
+const FRESH_LINE = "rgba(2, 146, 253, 0.30)";
 
 // ─── Animation variants ─────────────────────────────────────
 const fadeUp = {
@@ -48,7 +49,7 @@ const STATS = [
   { value: "10K+", label: "Retail Partners" },
 ];
 
-// Product range — the heart of the brand
+// Product range
 const PRODUCT_RANGE = [
   {
     emoji: "🧺",
@@ -121,29 +122,6 @@ const VALUES = [
   },
 ];
 
-const JOURNEY = [
-  {
-    year: "1999",
-    title: "A Small Beginning",
-    text: "Elizon started with one promise — make cleaning products families can genuinely trust.",
-  },
-  {
-    year: "2008",
-    title: "Wider Range",
-    text: "Added soaps, toilet cleaners, and household care to cover every corner of the home.",
-  },
-  {
-    year: "2015",
-    title: "Quality First",
-    text: "Strengthened formulation testing, packaging standards, and skin-safety processes.",
-  },
-  {
-    year: "2024",
-    title: "A Growing Household Name",
-    text: "Trusted by 1M+ homes, with an expanding eco range and pan-India distribution.",
-  },
-];
-
 // ─── Bubble decoration ──────────────────────────────────────
 function Bubbles({ count = 6, className = "" }) {
   const positions = [
@@ -168,7 +146,7 @@ function Bubbles({ count = 6, className = "" }) {
             left: p.left,
             width: p.size,
             height: p.size,
-            background: `radial-gradient(circle at 30% 30%, rgba(20,184,166,0.18), rgba(20,184,166,0.02))`,
+            background: `radial-gradient(circle at 30% 30%, rgba(2,146,253,0.18), rgba(2,146,253,0.02))`,
             border: `1px solid ${FRESH_LINE}`,
           }}
         />
@@ -196,7 +174,7 @@ export default function AboutPage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(180deg, rgba(10,54,125,0.10) 0%, rgba(20,184,166,0.08) 100%)`,
+            background: `linear-gradient(180deg, rgba(10,54,125,0.10) 0%, rgba(2,146,253,0.08) 100%)`,
           }}
         />
       </section>
@@ -206,25 +184,6 @@ export default function AboutPage() {
       ============================================================ */}
       <section className="relative bg-white py-8 lg:py-12 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* ═══════════════════════════════════════════════════
-        Eyebrow (optional — uncomment if you want the label)
-    ═══════════════════════════════════════════════════ */}
-          {/* <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
-      style={{ color: FRESH }}
-    >
-      <span className="w-8 h-px" style={{ background: FRESH }} />
-      <span>About Elizon</span>
-      <span className="text-gray-300">— 01</span>
-    </motion.div> */}
-
-          {/* ═══════════════════════════════════════════════════
-        NEW LAYOUT — text (7) + stats panel (5)
-    ═══════════════════════════════════════════════════ */}
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* ─── LEFT: Heading + paragraphs ─── */}
             <motion.div
@@ -267,7 +226,6 @@ export default function AboutPage() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="lg:col-span-5 lg:pl-8 lg:border-l lg:border-gray-100"
             >
-              {/* Small heading above stats */}
               <p
                 className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.24em] uppercase mb-6"
                 style={{ color: FRESH }}
@@ -306,25 +264,10 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================
-          02 — PRODUCT RANGE (the heart of the brand)
+          02 — PRODUCT RANGE
       ============================================================ */}
       <section className="relative py-8 lg:py-12 bg-gray-50 overflow-hidden">
-        {/* <Bubbles count={4} /> */}
-
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
-            style={{ color: FRESH }}
-          >
-            <span className="w-8 h-px" style={{ background: FRESH }} />
-            <span>What We Make</span>
-            <span className="text-gray-300">— 02</span>
-          </motion.div> */}
-
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-end mb-14">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -358,7 +301,17 @@ export default function AboutPage() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-60px" }}
-                className="group relative bg-white rounded-2xl border border-gray-100 p-6 lg:p-7 hover:border-[#14B8A6]/40 hover:shadow-[0_16px_40px_rgba(20,184,166,0.10)] hover:-translate-y-1 transition-all duration-500"
+                className="group relative bg-white rounded-2xl border border-gray-100 p-6 lg:p-7 transition-all duration-500"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = `${FRESH}66`;
+                  e.currentTarget.style.boxShadow = `0 16px 40px rgba(2,146,253,0.10)`;
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = "";
+                  e.currentTarget.style.boxShadow = "";
+                  e.currentTarget.style.transform = "";
+                }}
               >
                 <span
                   className="inline-flex w-14 h-14 items-center justify-center rounded-2xl mb-5 text-2xl transition-transform duration-500 group-hover:scale-110"
@@ -374,15 +327,6 @@ export default function AboutPage() {
                 <p className="text-sm text-gray-500 leading-relaxed">
                   {range.text}
                 </p>
-
-                {/* <Link
-                  href="/all-products"
-                  className="mt-5 inline-flex items-center gap-2 text-[12px] font-semibold tracking-wide uppercase opacity-0 group-hover:opacity-100 transition-all duration-300"
-                  style={{ color: FRESH }}
-                >
-                  Explore
-                  <HiArrowRight className="text-sm" />
-                </Link> */}
               </motion.div>
             ))}
           </div>
@@ -390,8 +334,8 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================
-    03 — MISSION & VISION
-============================================================ */}
+          03 — MISSION & VISION
+      ============================================================ */}
       <section className="relative bg-white py-8 lg:py-12 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
@@ -401,7 +345,17 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7 }}
-              className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+              className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] transition-all duration-500 overflow-hidden"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0 20px 50px rgba(2,146,253,0.10)`;
+                e.currentTarget.style.borderColor = `${FRESH}4d`;
+                e.currentTarget.style.transform = "translateY(-4px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "";
+                e.currentTarget.style.borderColor = "";
+                e.currentTarget.style.transform = "";
+              }}
             >
               {/* Soft corner glow on hover */}
               <div
@@ -418,7 +372,6 @@ export default function AboutPage() {
                   <HiOutlineLightningBolt className="text-2xl" />
                 </span>
 
-                {/* Eyebrow */}
                 <p
                   className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
                   style={{ color: FRESH }}
@@ -426,12 +379,10 @@ export default function AboutPage() {
                   Our Mission
                 </p>
 
-                {/* Heading */}
                 <h3 className="text-2xl font-semibold text-gray-900 leading-snug mb-4">
                   Make everyday cleaning simpler, safer, and more effective.
                 </h3>
 
-                {/* Body */}
                 <p className="text-gray-600 leading-relaxed">
                   To develop reliable detergents, soaps, toilet cleaners, and
                   household care products that deliver consistent performance
@@ -447,7 +398,17 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+              className="group relative bg-white rounded-3xl border border-gray-100 p-8 lg:p-10 shadow-[0_4px_20px_rgba(15,23,42,0.04)] transition-all duration-500 overflow-hidden"
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = `0 20px 50px rgba(2,146,253,0.10)`;
+                e.currentTarget.style.borderColor = `${FRESH}4d`;
+                e.currentTarget.style.transform = "translateY(-4px)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = "";
+                e.currentTarget.style.borderColor = "";
+                e.currentTarget.style.transform = "";
+              }}
             >
               {/* Soft corner glow on hover */}
               <div
@@ -464,7 +425,6 @@ export default function AboutPage() {
                   <HiOutlineEye className="text-2xl" />
                 </span>
 
-                {/* Eyebrow */}
                 <p
                   className="text-[11px] font-semibold tracking-[0.25em] uppercase mb-3"
                   style={{ color: FRESH }}
@@ -472,12 +432,10 @@ export default function AboutPage() {
                   Our Vision
                 </p>
 
-                {/* Heading */}
                 <h3 className="text-2xl font-semibold text-gray-900 leading-snug mb-4">
                   To become India&apos;s most-loved everyday cleaning brand.
                 </h3>
 
-                {/* Body */}
                 <p className="text-gray-600 leading-relaxed">
                   A household name known not just for what we clean, but for how
                   we clean — responsibly, thoughtfully, and with a commitment to
@@ -493,22 +451,7 @@ export default function AboutPage() {
           04 — VALUES / WHY CHOOSE US
       ============================================================ */}
       <section className="relative py-8 lg:py-12 bg-gray-50 overflow-hidden">
-        {/* <Bubbles count={5} /> */}
-
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex items-center gap-3 text-[11px] font-semibold tracking-[0.28em] uppercase mb-8"
-            style={{ color: FRESH }}
-          >
-            <span className="w-8 h-px" style={{ background: FRESH }} />
-            <span>Why Choose Elizon</span>
-            <span className="text-gray-300">— 04</span>
-          </motion.div> */}
-
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end mb-14">
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
@@ -545,20 +488,34 @@ export default function AboutPage() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: "-60px" }}
-                  className="group relative bg-white border border-gray-100 rounded-2xl p-6 lg:p-7 hover:border-[#14B8A6]/40 hover:shadow-[0_16px_40px_rgba(20,184,166,0.10)] hover:-translate-y-1 transition-all duration-500"
+                  className="group relative bg-white border border-gray-100 rounded-2xl p-6 lg:p-7 transition-all duration-500"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = `${FRESH}66`;
+                    e.currentTarget.style.boxShadow = `0 16px 40px rgba(2,146,253,0.10)`;
+                    e.currentTarget.style.transform = "translateY(-4px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "";
+                    e.currentTarget.style.boxShadow = "";
+                    e.currentTarget.style.transform = "";
+                  }}
                 >
                   <span
-                    className="inline-flex w-12 h-12 items-center justify-center rounded-xl mb-5 hover:bg-[#14B8A6] transition-all duration-500 group-hover:text-white"
+                    className="inline-flex w-12 h-12 items-center justify-center rounded-xl mb-5 transition-all duration-500"
                     style={{
                       background: FRESH_SOFT,
                       color: FRESH,
                     }}
-                    
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = FRESH;
+                      e.currentTarget.style.color = "#ffffff";
+                    }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = FRESH_SOFT;
+                      e.currentTarget.style.color = FRESH;
                     }}
                   >
-                    <Icon className="text-xl text-[#14B8A6]" />
+                    <Icon className="text-xl" />
                   </span>
 
                   <h3 className="text-base font-semibold text-gray-900 mb-2 leading-snug">
@@ -576,7 +533,7 @@ export default function AboutPage() {
       </section>
 
       {/* ============================================================
-          06 — CTA
+          05 — CTA
       ============================================================ */}
       <section className="relative overflow-hidden py-8 lg:py-10 bg-gradient-to-r from-gray-900 to-gray-800">
         <div
@@ -623,7 +580,7 @@ export default function AboutPage() {
                 boxShadow: `0 10px 30px ${FRESH}40`,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#0D9488";
+                e.currentTarget.style.background = FRESH_DARK;
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = FRESH;

@@ -11,8 +11,8 @@ import {
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
-const FRESH_DARK = '#0D9488';
+const FRESH = '#0292FD';
+const FRESH_DARK = '#0273C9';
 
 const NAV_LINKS = [
   { label: 'Home', href: '/' },
@@ -89,7 +89,6 @@ export default function Navbar() {
               aria-label="Elizon home"
               className="group inline-flex items-center gap-3 shrink-0"
             >
-              {/* Rotating squares mark */}
               <span className="relative w-[30px] h-[30px] grid place-items-center">
                 <span
                   className="absolute inset-0 rounded-lg border-[1.5px] transition-transform duration-500 ease-out group-hover:rotate-45"
@@ -101,7 +100,6 @@ export default function Navbar() {
                 />
               </span>
 
-              {/* Wordmark */}
               <span className="text-[17px] sm:text-[19px] font-semibold tracking-[0.24em] sm:tracking-[0.28em] uppercase text-gray-900">
                 Eli<span style={{ color: FRESH }}>z</span>on
               </span>
@@ -125,7 +123,7 @@ export default function Navbar() {
                     >
                       {link.label}
 
-                      {/* Mint-teal gradient underline */}
+                      {/* Accent gradient underline */}
                       <span
                         className={`pointer-events-none absolute left-0 bottom-0 h-[1.5px] w-full origin-center transition-transform duration-300 ease-out ${
                           active
@@ -161,7 +159,7 @@ export default function Navbar() {
               <span className="relative z-10">Request a Quote</span>
             </Link>
 
-            {/* ---------- Mobile: phone icon (quick action) ---------- */}
+            {/* ---------- Mobile: phone icon + burger ---------- */}
             <div className="flex items-center gap-2 lg:hidden">
               <a
                 href="tel:+919876543210"
@@ -181,7 +179,6 @@ export default function Navbar() {
                 <HiOutlinePhone className="text-base" />
               </a>
 
-              {/* ---------- Burger ---------- */}
               <button
                 onClick={() => setOpen((v) => !v)}
                 aria-label={open ? 'Close menu' : 'Open menu'}
@@ -195,7 +192,9 @@ export default function Navbar() {
               >
                 <span
                   className={`absolute left-1/2 w-[18px] h-[1.5px] -translate-x-1/2 transition-all duration-300 ${
-                    open ? 'top-[19px] rotate-45 bg-white' : 'top-[14px] bg-gray-900'
+                    open
+                      ? 'top-[19px] rotate-45 bg-white'
+                      : 'top-[14px] bg-gray-900'
                   }`}
                 />
                 <span
@@ -205,7 +204,9 @@ export default function Navbar() {
                 />
                 <span
                   className={`absolute left-1/2 w-[18px] h-[1.5px] -translate-x-1/2 transition-all duration-300 ${
-                    open ? 'top-[19px] -rotate-45 bg-white' : 'top-[24px] bg-gray-900'
+                    open
+                      ? 'top-[19px] -rotate-45 bg-white'
+                      : 'top-[24px] bg-gray-900'
                   }`}
                 />
               </button>
@@ -236,7 +237,7 @@ export default function Navbar() {
 
         {/* Drawer panel */}
         <div className="absolute inset-x-0 top-0 max-h-screen overflow-y-auto bg-white shadow-[0_20px_60px_rgba(15,23,42,0.15)]">
-          {/* Header of drawer with logo */}
+          {/* Drawer header */}
           <div className="px-6 pt-5 pb-6 border-b border-gray-100">
             <span
               className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.28em] uppercase mb-2"
@@ -253,7 +254,7 @@ export default function Navbar() {
           {/* Nav links */}
           <nav className="px-4 sm:px-6 py-4">
             <ul className="space-y-1 list-none m-0 p-0">
-              {NAV_LINKS.map((link, i) => {
+              {NAV_LINKS.map((link) => {
                 const active = isLinkActive(pathname, link.href);
                 return (
                   <li key={link.href}>
@@ -270,10 +271,12 @@ export default function Navbar() {
                         background: active ? `${FRESH}14` : 'transparent',
                       }}
                       onMouseEnter={(e) => {
-                        if (!active) e.currentTarget.style.background = '#f9fafb';
+                        if (!active)
+                          e.currentTarget.style.background = '#f9fafb';
                       }}
                       onMouseLeave={(e) => {
-                        if (!active) e.currentTarget.style.background = 'transparent';
+                        if (!active)
+                          e.currentTarget.style.background = 'transparent';
                       }}
                     >
                       <span className="flex items-center gap-3">
@@ -303,7 +306,6 @@ export default function Navbar() {
 
           {/* CTA + contact */}
           <div className="px-6 pb-8 pt-2 border-t border-gray-100 mt-2">
-            {/* CTA button */}
             <Link
               href="/contact"
               onClick={() => setOpen(false)}

@@ -19,8 +19,8 @@ import { FaWhatsapp } from "react-icons/fa";
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = "#0A367D";
-const FRESH = "#14B8A6";
-const FRESH_DARK = "#0D9488";
+const FRESH = "#0292FD";
+const FRESH_DARK = "#0273C9";
 
 // ─── Animation variants ──────────────────────────────────────
 const fadeUp = {
@@ -124,7 +124,7 @@ export default function ContactPage() {
   const inputClass = (name) =>
     `w-full bg-white border rounded-xl px-4 py-3.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all duration-300 ${
       focused === name
-        ? "border-[#14B8A6] shadow-[0_0_0_4px_rgba(20,184,166,0.10)]"
+        ? "border-[#0292FD] shadow-[0_0_0_4px_rgba(2,146,253,0.10)]"
         : "border-gray-200 hover:border-gray-300"
     }`;
 
@@ -145,7 +145,7 @@ export default function ContactPage() {
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `linear-gradient(180deg, rgba(10,54,125,0.08) 0%, rgba(20,184,166,0.08) 100%)`,
+            background: `linear-gradient(180deg, rgba(10,54,125,0.08) 0%, rgba(2,146,253,0.08) 100%)`,
           }}
         />
       </section>

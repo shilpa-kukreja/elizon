@@ -12,7 +12,7 @@ const announcements = [
 ];
 
 // Brand palette
-const BRAND_DARK = '#082B66';
+const BRAND_DARK = '#0035BE';
 const BRAND = '#0A367D';
 const FRESH = '#14B8A6';
 

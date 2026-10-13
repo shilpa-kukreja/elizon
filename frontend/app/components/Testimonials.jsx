@@ -6,8 +6,8 @@ import { HiOutlineSparkles } from "react-icons/hi";
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = "#0A367D";
-const FRESH = "#14B8A6";
-const STAR = "#F5A623"; // warm amber for star ratings (feels more natural than teal)
+const FRESH = "#0292FD";
+const STAR = "#F5A623"; // warm amber for star ratings
 
 // ─── Animation Variants ──────────────────────────────────────
 const headingVariants = {
@@ -29,7 +29,7 @@ const subtitleVariants = {
   visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.6 } },
 };
 
-// ─── Testimonials — cleaned for a consumer brand ─────────────
+// ─── Testimonials ────────────────────────────────────────────
 const TESTIMONIALS = [
   {
     id: 1,
@@ -178,15 +178,9 @@ export default function Testimonials() {
   // ─── Card ─────────────────────────────────────────────────
   const Card = ({ t, className = "" }) => (
     <div
-      className={`group relative h-full flex flex-col bg-white rounded-2xl p-6 lg:p-7 border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden ${className}`}
+      className={`group relative h-full flex flex-col bg-white rounded-2xl p-6 lg:p-7 border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(2,146,253,0.10)] hover:border-[#0292FD]/30 hover:-translate-y-1 transition-all duration-500 overflow-hidden ${className}`}
     >
-      {/* Soft corner glow */}
-      {/* <div
-        className="absolute -top-16 -right-16 w-32 h-32 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: `${FRESH}20` }}
-      /> */}
-
-      {/* Big quote mark — subtle brand signature */}
+      {/* Big quote mark */}
       <span
         className="absolute top-2 right-2 text-6xl leading-none font-serif select-none opacity-[0.07] group-hover:opacity-[0.12] transition-opacity duration-500"
         style={{ color: FRESH }}
@@ -209,7 +203,7 @@ export default function Testimonials() {
           </span>
         </div>
 
-        {/* Divider — thin, fresh-tinted */}
+        {/* Divider — thin, accent-tinted */}
         <div
           className="w-full h-px mb-4"
           style={{
@@ -217,7 +211,6 @@ export default function Testimonials() {
           }}
         />
 
-        {/* Author */}
         {/* Author */}
         <div className="flex items-center gap-3 mt-auto">
           {/* Initial avatar */}
@@ -259,31 +252,10 @@ export default function Testimonials() {
         background: `linear-gradient(180deg, #ffffff 0%, #f8fafb 100%)`,
       }}
     >
-      {/* Ambient glows */}
-      {/* <div
-        className="absolute -top-40 left-0 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: `${FRESH}10` }}
-      />
-      <div
-        className="absolute -bottom-40 right-0 w-[400px] h-[400px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: `${BRAND}0d` }}
-      /> */}
-
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row lg:items-start lg:gap-14">
           {/* ---------- LEFT: Text ---------- */}
           <div className="w-full lg:w-[30%] mb-10 lg:mb-0 shrink-0">
-            {/* <motion.span
-              variants={subtitleVariants}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-4"
-              style={{ color: FRESH }}
-            >
-              <HiOutlineSparkles className="text-sm" />
-              Loved by families
-            </motion.span> */}
-
             <motion.h2
               variants={headingVariants}
               initial="hidden"
@@ -381,11 +353,6 @@ export default function Testimonials() {
                 onClick={prevSlide}
                 aria-label="Previous testimonial"
                 className="absolute -left-3 top-1/2 -translate-y-1/2 w-10 h-10 grid place-items-center rounded-full bg-white border border-gray-200 text-gray-900 shadow-[0_6px_20px_rgba(15,23,42,0.10)] transition-colors duration-300 z-[2]"
-                style={
-                  {
-                    // hover effects via inline onMouseEnter/Leave below
-                  }
-                }
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = FRESH;
                   e.currentTarget.style.borderColor = FRESH;

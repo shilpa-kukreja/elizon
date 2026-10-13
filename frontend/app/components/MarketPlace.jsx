@@ -21,7 +21,7 @@ const MARKETPLACES = [
 const COPIES = 4;
 
 export default function MarketplaceMarquee({
-  heading = 'Also available on',
+  heading = 'Also ',
   subtitle = "Find Elizon products on India's most trusted marketplaces and quick-commerce platforms.",
   marketplaces = MARKETPLACES,
   speed = 40, // seconds per full set pass
@@ -66,7 +66,7 @@ export default function MarketplaceMarquee({
             className="text-center max-w-2xl mx-auto mb-10 lg:mb-12"
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight mb-3">
-              {heading}
+              {heading} <span className='text-[#0292FD]'>Available In</span>
             </h2>
 
             <p className="text-gray-600 text-sm lg:text-base leading-relaxed">

@@ -3,24 +3,24 @@
 import { useState, useEffect } from 'react';
 
 // ---------- Palette ----------
-const FRESH = '#14B8A6';
+const FRESH = '#0292FD';
 
 // ---------- Desktop slides ----------
 const DESKTOP_IMAGES = [
   {
-    src: '/imageslider/desktop/d1.png',
+    src: '/imageslider/desktop/desk1.jpg',
     alt: 'Elizon detergent range on a marble countertop',
     title: 'Powerful Cleaning',
     sub: 'Tough on stains, gentle on fabric',
   },
   {
-    src: '/imageslider/desktop/d2.png',
+    src: '/imageslider/desktop/desk2.jpg',
     alt: 'Elizon soaps and handwash collection',
     title: 'Everyday Freshness',
     sub: 'Moisturising care for the whole family',
   },
   {
-    src: '/imageslider/desktop/d3.png',
+    src: '/imageslider/desktop/desk3.jpg',
     alt: 'Elizon household cleaning essentials',
     title: 'A Cleaner Home',
     sub: 'Every corner, beautifully fresh',
@@ -185,7 +185,7 @@ export default function ImageSlider() {
           style={{
             background: arrowHover === 'left' ? FRESH : 'rgba(10, 10, 10, 0.55)',
             borderColor:
-              arrowHover === 'left' ? FRESH : 'rgba(20, 184, 166, 0.40)',
+              arrowHover === 'left' ? FRESH : 'rgba(2, 146, 253, 0.40)',
             color: '#ffffff',
           }}
         >
@@ -219,7 +219,7 @@ export default function ImageSlider() {
             background:
               arrowHover === 'right' ? FRESH : 'rgba(10, 10, 10, 0.55)',
             borderColor:
-              arrowHover === 'right' ? FRESH : 'rgba(20, 184, 166, 0.40)',
+              arrowHover === 'right' ? FRESH : 'rgba(2, 146, 253, 0.40)',
             color: '#ffffff',
           }}
         >

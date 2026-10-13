@@ -7,8 +7,8 @@ import { HiArrowRight, HiOutlinePhone, HiOutlineSparkles } from "react-icons/hi"
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = "#0A367D";
 const BRAND_DARK = "#082B66";
-const FRESH = "#14B8A6";
-const FRESH_DARK = "#0D9488";
+const FRESH = "#0292FD";
+const FRESH_DARK = "#0273C9";
 
 // ─── Foam bubbles ───────────────────────────────────────────
 function Bubbles() {
@@ -92,19 +92,6 @@ export default function CTA() {
 
       <div className="relative max-w-6xl mx-auto px-6 lg:px-8">
         <div className="text-center">
-          {/* Eyebrow */}
-          {/* <div
-            className={`inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-5 transition-all duration-700 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
-            }`}
-            style={{ color: FRESH }}
-          >
-            <HiOutlineSparkles className="text-sm" />
-            Ready when you are
-          </div> */}
-
           {/* Headline */}
           <h2
             className={`text-3xl sm:text-4xl lg:text-5xl font-semibold text-white leading-[1.1] tracking-tight mb-5 max-w-3xl mx-auto transition-all duration-700 delay-100 ${
@@ -170,32 +157,6 @@ export default function CTA() {
               <span>Call Us: +91 74288 55574</span>
             </a>
           </div>
-
-          {/* Trust strip */}
-          {/* <div
-            className={`flex flex-wrap items-center justify-center gap-x-8 gap-y-3 pt-8 border-t border-white/10 max-w-3xl mx-auto transition-all duration-700 delay-500 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
-            }`}
-          >
-            {[
-              "Free shipping above ₹499",
-              "100% secure payments",
-              "Easy returns within 7 days",
-            ].map((line) => (
-              <span
-                key={line}
-                className="inline-flex items-center gap-2 text-[12px] tracking-wide text-gray-400"
-              >
-                <span
-                  className="inline-block w-1.5 h-1.5 rounded-full"
-                  style={{ background: FRESH }}
-                />
-                {line}
-              </span>
-            ))}
-          </div> */}
         </div>
       </div>
     </section>

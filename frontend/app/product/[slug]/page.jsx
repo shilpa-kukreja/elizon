@@ -4,28 +4,26 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight } from "lucide-react";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaLeaf, FaMapMarkerAlt } from "react-icons/fa";
 import {
   HiOutlineShieldCheck,
-  HiOutlineTruck,
-  HiOutlineRefresh,
   HiOutlineSparkles,
+  HiOutlineCheckCircle,
   HiArrowRight,
 } from "react-icons/hi";
-import { FaLeaf, FaMapMarkerAlt } from 'react-icons/fa';
 
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProductEnquiryModal from "../../components/ProductEnquiryModel";
-import ProductSpecifications from "../../components/ProductSpecifications";
 import AnnouncementBar from "../../components/AnnouncementBar";
 
 import {
   getProductBySlug,
   getProductImageSrc,
   getWhatsAppUrl,
-  getRelatedProducts,
   getCategoryName,
+  categories,
+  getProductsForCategory,
 } from "../../lib/products";
 
 // ─── Palette ────────────────────────────────────────────────
@@ -35,9 +33,9 @@ const FRESH_DARK = "#0D9488";
 
 // ─── Trust row data ─────────────────────────────────────────
 const TRUST_ITEMS = [
-  { icon: FaLeaf, label: 'Eco-Friendly' },
-  { icon: FaMapMarkerAlt, label: 'Made in India' },
-  { icon: HiOutlineShieldCheck, label: 'Quality Assured' },
+  { icon: FaLeaf, label: "Eco-Friendly" },
+  { icon: FaMapMarkerAlt, label: "Made in India" },
+  { icon: HiOutlineShieldCheck, label: "Quality Assured" },
 ];
 
 export default function ProductDetailPage() {
@@ -69,7 +67,9 @@ export default function ProductDetailPage() {
         <div className="min-h-screen flex items-center justify-center pt-28 bg-gray-50">
           <div
             className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin"
-            style={{ borderColor: `${FRESH} transparent transparent transparent` }}
+            style={{
+              borderColor: `${FRESH} transparent transparent transparent`,
+            }}
           />
         </div>
 
@@ -98,7 +98,8 @@ export default function ProductDetailPage() {
             Product Not Found
           </h1>
           <p className="text-sm text-gray-500 mb-6 max-w-sm text-center">
-            The product you're looking for does not exist or has been moved.
+            The product you&apos;re looking for does not exist or has been
+            moved.
           </p>
 
           <Link
@@ -126,28 +127,32 @@ export default function ProductDetailPage() {
   }
 
   const whatsappUrl = getWhatsAppUrl(product);
-  const relatedProducts = getRelatedProducts(product.slug);
   const categoryName = getCategoryName(product.category);
+
+  // Other categories (excluding current), each with its product
+  const otherCategories = categories
+    .filter((c) => c.id !== product.category)
+    .map((c) => ({
+      ...c,
+      product: getProductsForCategory(c.id)[0] || null,
+    }));
 
   return (
     <>
       <AnnouncementBar />
       <Navbar />
 
-      <section className="bg-gray-50 min-h-screen pt-6 lg:pt-10 pb-16">
+      {/* ═══════════════════════════════════════════════════════
+          BREADCRUMB + PRODUCT HERO
+      ═══════════════════════════════════════════════════════ */}
+      <section className="bg-gray-50 pt-6 lg:pt-10 pb-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-
-          {/* ============================================================
-              BREADCRUMB
-          ============================================================ */}
+          {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
             className="flex items-center flex-wrap gap-1.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-400 mb-6"
           >
-            <Link
-              href="/"
-              className="hover:text-gray-700 transition-colors"
-            >
+            <Link href="/" className="hover:text-gray-700 transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3 h-3" style={{ color: FRESH }} />
@@ -170,37 +175,25 @@ export default function ProductDetailPage() {
             </span>
           </nav>
 
-          {/* ============================================================
-              PRODUCT DETAIL GRID
-          ============================================================ */}
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-10 lg:items-stretch">
-
-            {/* ─── LEFT: Product image ─── */}
-            <div className="relative bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_4px_20px_rgba(15,23,42,0.04)] aspect-[4/4] sm:aspect-[3/2] lg:aspect-auto lg:min-h-0 lg:max-h-[min(85vh,680px)] lg:h-full">
-              <div className="relative h-full w-full">
+          {/* ═══════════════════════════════════════════════════════
+              SECTION 1 — Image + Product Info
+          ═══════════════════════════════════════════════════════ */}
+          <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+            {/* LEFT: Image */}
+            <div className="lg:col-span-5">
+              <div className="relative bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-[0_4px_20px_rgba(15,23,42,0.04)] aspect-[4/3] sm:aspect-[3/2] lg:aspect-auto lg:h-full">
                 <img
                   src={getProductImageSrc(product.image)}
                   alt={product.name}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0 h-full w-full object-contain"
                 />
-
-                {/* Category chip */}
-                {/* <span
-                  className="absolute top-5 left-5 inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm shadow-sm"
-                  style={{ color: FRESH }}
-                >
-                  <HiOutlineSparkles className="text-xs" />
-                  {categoryName}
-                </span> */}
               </div>
             </div>
 
-            {/* ─── RIGHT: Product information ─── */}
-            <div className="bg-white rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)] flex flex-col lg:max-h-[min(85vh,680px)] lg:h-full lg:overflow-hidden">
-
-              {/* Product header */}
-              <div className="shrink-0 px-5 sm:px-7 pt-6 sm:pt-8 pb-5 border-b border-gray-100">
-                {/* Eyebrow */}
+            {/* RIGHT: Info */}
+            <div className="lg:col-span-7 bg-white rounded-3xl border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)] flex flex-col lg:max-h-[min(85vh,680px)] lg:h-full lg:overflow-hidden">
+              {/* Header */}
+              <div className="shrink-0 px-6 sm:px-8 pt-7 sm:pt-8 pb-5 border-b border-gray-100">
                 <span
                   className="inline-flex items-center gap-2 text-[10px] font-semibold tracking-[0.28em] uppercase mb-3"
                   style={{ color: FRESH }}
@@ -209,33 +202,26 @@ export default function ProductDetailPage() {
                   {categoryName}
                 </span>
 
-                {/* Product name */}
-                <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 leading-tight">
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
                   {product.name}
                 </h1>
 
-                {/* Short description */}
-                {product.shortDescription ? (
-                  <p className="text-sm text-gray-600 leading-relaxed mt-3">
+                {product.shortDescription && (
+                  <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
                     {product.shortDescription}
                   </p>
-                ) : product.specs ? (
-                  <p className="text-sm text-gray-600 leading-relaxed mt-3">
-                    {product.specs}
-                  </p>
-                ) : null}
+                )}
 
-                {/* Mint-teal divider */}
                 <div
                   className="w-12 h-[3px] rounded-full mt-4"
                   style={{ background: FRESH }}
                 />
               </div>
 
-              {/* Scrollable specs */}
+              {/* Description */}
               <div
-                className="px-5 sm:px-7 py-5 lg:flex-1 lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain lg:scrollbar-thin"
-                aria-label="Product specifications"
+                className="px-6 sm:px-8 py-6 lg:flex-1 lg:min-h-0 lg:overflow-y-auto lg:overscroll-contain"
+                aria-label="Product description"
               >
                 <div className="flex items-center gap-2 mb-4">
                   <span
@@ -243,18 +229,20 @@ export default function ProductDetailPage() {
                     style={{ background: FRESH }}
                   />
                   <p className="text-[11px] font-semibold tracking-[0.22em] uppercase text-gray-500">
-                    Product Details
+                    About This Product
                   </p>
                 </div>
 
-                <ProductSpecifications items={product.specificationList} />
+                <p className="text-[15px] lg:text-base text-gray-600 leading-[1.85]">
+                  {product.longDescription ||
+                    product.shortDescription ||
+                    "Product details coming soon."}
+                </p>
               </div>
 
-              {/* Action buttons + trust */}
-              <div className="shrink-0 px-5 sm:px-7 py-4 sm:py-5 border-t border-gray-100 bg-white">
+              {/* Buttons + trust */}
+              <div className="shrink-0 px-6 sm:px-8 py-5 border-t border-gray-100 bg-white">
                 <div className="grid grid-cols-2 gap-3 sm:gap-4">
-
-                  {/* Enquiry button */}
                   <button
                     type="button"
                     onClick={() => setIsModalOpen(true)}
@@ -277,7 +265,6 @@ export default function ProductDetailPage() {
                     <span className="relative z-10">Enquire Now</span>
                   </button>
 
-                  {/* WhatsApp */}
                   <a
                     href={whatsappUrl}
                     target="_blank"
@@ -290,7 +277,6 @@ export default function ProductDetailPage() {
                   </a>
                 </div>
 
-                {/* Trust row */}
                 <div className="mt-4 pt-4 border-t border-gray-100 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
                   {TRUST_ITEMS.map((item) => {
                     const Icon = item.icon;
@@ -308,121 +294,182 @@ export default function ProductDetailPage() {
               </div>
             </div>
           </div>
-
-          {/* ============================================================
-              RELATED PRODUCTS
-          ============================================================ */}
-          {relatedProducts.length > 0 && (
-            <div className="mt-16 pt-12 border-t border-gray-200">
-
-              {/* Section header */}
-              <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
-                <div>
-                  <span
-                    className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-3"
-                    style={{ color: FRESH }}
-                  >
-                    <span className="w-6 h-px" style={{ background: FRESH }} />
-                    You may also like
-                  </span>
-                  <h2 className="text-2xl sm:text-3xl font-semibold text-gray-900 mt-1">
-                    More from our{" "}
-                    <span style={{ color: FRESH }}>
-                      {categoryName}
-                    </span>{' '}
-                    range
-                  </h2>
-                </div>
-
-                <Link
-                  href={`/all-products?category=${product.category}`}
-                  className="group inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 self-start lg:self-auto"
-                  style={{ color: FRESH }}
-                >
-                  View all
-                  <span
-                    className="inline-flex w-7 h-7 items-center justify-center rounded-full text-white transition-all duration-500 group-hover:translate-x-0.5"
-                    style={{ background: FRESH }}
-                  >
-                    <HiArrowRight className="text-sm" />
-                  </span>
-                </Link>
-              </div>
-
-              {/* Related products grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-                {relatedProducts.map((item, i) => (
-                  <Link
-                    key={item.id}
-                    href={`/product/${item.slug}`}
-                    className="block group h-full"
-                  >
-                    <article className="flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#14B8A6]/30 hover:shadow-[0_20px_50px_rgba(20,184,166,0.12)] hover:-translate-y-2 transition-all duration-500 h-full">
-
-                      {/* Image */}
-                      <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                        <img
-                          src={getProductImageSrc(item.image)}
-                          alt={item.name}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                        />
-
-                        {/* Sparkle on hover */}
-                        {/* <span
-                          className="hidden md:flex absolute top-3 right-3 w-8 h-8 items-center justify-center rounded-full text-white opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500 shadow-lg"
-                          style={{
-                            background: FRESH,
-                            boxShadow: `0 6px 16px ${FRESH}50`,
-                          }}
-                          aria-hidden="true"
-                        >
-                          <HiOutlineSparkles className="text-xs" />
-                        </span> */}
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex flex-col flex-1 p-4 lg:p-5">
-                        {/* Divider */}
-                        <div
-                          className="w-8 group-hover:w-14 h-[2px] rounded-full mb-3 transition-all duration-500"
-                          style={{ background: FRESH }}
-                        />
-
-                        {/* Product name */}
-                        <h3 className="text-[14px] lg:text-[15px] font-semibold text-gray-900 leading-snug line-clamp-2 mb-3 group-hover:text-[#14B8A6] transition-colors">
-                          {item.name}
-                        </h3>
-
-                        {/* Spacer */}
-                        <div className="flex-1" />
-
-                        {/* CTA */}
-                        <span
-                          className="relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border px-4 py-2 text-[10px] lg:text-[11px] font-semibold tracking-[0.14em] uppercase text-gray-900 transition-colors duration-300 group-hover:text-white"
-                          style={{ borderColor: `${FRESH}66` }}
-                        >
-                          <span
-                            className="absolute inset-0 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
-                            style={{ background: FRESH }}
-                          />
-                          <span className="relative z-10 inline-flex items-center gap-1.5">
-                            View
-                            <HiArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-0.5" />
-                          </span>
-                        </span>
-                      </div>
-                    </article>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </section>
 
-      {/* ============================================================
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 2 — Key Benefits (full-width)
+      ═══════════════════════════════════════════════════════ */}
+      {product.benefits?.length > 0 && (
+        <section className="bg-white py-14 lg:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            {/* Section header */}
+            <div className="max-w-2xl mb-10">
+              <span
+                className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-3"
+                style={{ color: FRESH }}
+              >
+                <span className="w-6 h-px" style={{ background: FRESH }} />
+                Why You&apos;ll Love It
+              </span>
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
+                Key{" "}
+                <span style={{ color: FRESH }}>benefits</span>
+              </h2>
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
+                A few things that make {product.name} stand out in everyday
+                use.
+              </p>
+            </div>
+
+            {/* Benefits grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+              {product.benefits.map((benefit, i) => (
+                <div
+                  key={i}
+                  className="group relative bg-white rounded-2xl border border-gray-100 p-6 shadow-[0_4px_20px_rgba(15,23,42,0.04)] hover:shadow-[0_20px_50px_rgba(20,184,166,0.10)] hover:border-[#14B8A6]/30 hover:-translate-y-1 transition-all duration-500"
+                >
+                  {/* Icon badge */}
+                  <span
+                    className="inline-flex w-12 h-12 items-center justify-center rounded-xl mb-5 transition-transform duration-500 group-hover:scale-105"
+                    style={{ background: `${FRESH}15`, color: FRESH }}
+                  >
+                    <HiOutlineCheckCircle className="text-2xl" />
+                  </span>
+
+                  {/* Number */}
+                  <span
+                    className="absolute top-5 right-5 text-[10px] font-semibold tracking-[0.18em]"
+                    style={{ color: `${FRESH}80` }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+
+                  <p className="text-[15px] text-gray-700 leading-relaxed font-medium">
+                    {benefit}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
+          SECTION 3 — Other Categories (full-width)
+      ═══════════════════════════════════════════════════════ */}
+      {otherCategories.length > 0 && (
+        <section className="bg-gray-50 py-14 lg:py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
+            {/* Section header */}
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-10">
+              <div className="max-w-2xl">
+                <span
+                  className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-3"
+                  style={{ color: FRESH }}
+                >
+                  <span className="w-6 h-px" style={{ background: FRESH }} />
+                  Explore More
+                </span>
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-gray-900 leading-tight tracking-tight">
+                  Other{" "}
+                  <span style={{ color: FRESH }}>Elizon ranges</span>
+                </h2>
+                <p className="text-sm sm:text-base text-gray-600 leading-relaxed mt-3">
+                  Discover the rest of our everyday cleaning collection.
+                </p>
+              </div>
+
+              <Link
+                href="/all-products"
+                className="group inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 self-start lg:self-auto shrink-0"
+                style={{ color: FRESH }}
+              >
+                View all products
+                <span
+                  className="inline-flex w-7 h-7 items-center justify-center rounded-full text-white transition-all duration-500 group-hover:translate-x-0.5"
+                  style={{ background: FRESH }}
+                >
+                  <HiArrowRight className="text-sm" />
+                </span>
+              </Link>
+            </div>
+
+            {/* Other products grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+              {otherCategories.map((cat) => {
+                if (!cat.product) return null;
+
+                return (
+                  <Link
+                    key={cat.id}
+                    href={`/product/${cat.product.slug}`}
+                    className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-[#14B8A6]/30 hover:shadow-[0_20px_50px_rgba(20,184,166,0.12)] hover:-translate-y-2 transition-all duration-500 h-full"
+                  >
+                    {/* Image */}
+                    <div className="relative aspect-[5/4] overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+                      <img
+                        src={getProductImageSrc(cat.product.image)}
+                        alt={cat.product.name}
+                        className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-700"
+                      />
+
+                      {/* Category chip */}
+                      <span
+                        className="absolute top-4 left-4 text-[10px] font-semibold tracking-[0.18em] uppercase px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-sm shadow-sm"
+                        style={{ color: FRESH }}
+                      >
+                        {cat.name}
+                      </span>
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex flex-col flex-1 p-5 lg:p-6">
+                      {/* Divider */}
+                      <div
+                        className="w-10 group-hover:w-16 h-[2px] rounded-full mb-4 transition-all duration-500"
+                        style={{ background: FRESH }}
+                      />
+
+                      {/* Title */}
+                      <h3 className="text-base lg:text-lg font-semibold text-gray-900 leading-snug line-clamp-2 mb-3 group-hover:text-[#14B8A6] transition-colors">
+                        {cat.product.name}
+                      </h3>
+
+                      {/* Short description */}
+                      <p className="text-sm text-gray-500 leading-relaxed line-clamp-2 mb-4">
+                        {cat.product.shortDescription}
+                      </p>
+
+                      {/* Spacer */}
+                      <div className="flex-1" />
+
+                      {/* CTA */}
+                      <span
+                        className="relative inline-flex w-full items-center justify-center overflow-hidden rounded-full border px-4 py-2.5 text-[11px] font-semibold tracking-[0.16em] uppercase text-gray-900 transition-colors duration-300 group-hover:text-white"
+                        style={{ borderColor: `${FRESH}66` }}
+                      >
+                        <span
+                          className="absolute inset-0 translate-y-full transition-transform duration-300 ease-out group-hover:translate-y-0"
+                          style={{ background: FRESH }}
+                        />
+                        <span className="relative z-10 inline-flex items-center gap-1.5">
+                          View Product
+                          <HiArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-0.5" />
+                        </span>
+                      </span>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ═══════════════════════════════════════════════════════
           PRODUCT ENQUIRY MODAL
-      ============================================================ */}
+      ═══════════════════════════════════════════════════════ */}
       <ProductEnquiryModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

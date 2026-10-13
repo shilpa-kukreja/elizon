@@ -63,7 +63,7 @@ const BADGES = [
 ];
 
 export default function TrustBadges({
-  heading = 'Trusted quality in every pack',
+  heading = 'Trusted quality ',
   subtitle = 'Every Elizon product is backed by testing, safety standards, and a promise of consistent performance.',
   badges = BADGES,
   background = 'white', // 'white' | 'gray' | 'dark'
@@ -107,11 +107,11 @@ export default function TrustBadges({
           </span> */}
 
           <h2
-            className={`text-2xl sm:text-3xl lg:text-4xl font-semibold leading-tight tracking-tight mb-4 ${
+            className={`text-2xl sm:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight mb-4 ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
           >
-            {heading}
+            {heading} <span className='text-[#0292FD]'>in every pack</span>
           </h2>
 
           <p

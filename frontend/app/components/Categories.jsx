@@ -7,7 +7,7 @@ import { HiArrowRight, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
+const FRESH = '#0292FD'; // ← accent updated to the new blue
 
 // ─── Animation ──────────────────────────────────────────────
 const fadeUp = {
@@ -26,32 +26,32 @@ const fadeUp = {
 // ─── Data ───────────────────────────────────────────────────
 const CATEGORIES = [
   {
+    id: 'dishwash',
+    name: 'Dishwash',
+    tagline: 'Liquid',
+    image: '/category/cat1.png',
+    count: '1 Products',
+  },
+  {
     id: 'detergents',
     name: 'Detergents',
-    tagline: 'Liquid, powder & concentrated',
-    image: '/category/1.avif',
-    count: '6 Products',
+    tagline: 'Powder & concentrated',
+    image: '/category/cat2.png',
+    count: '1 Products',
   },
   {
     id: 'soaps',
     name: 'Soaps & Handwash',
     tagline: 'Moisturising, antibacterial & glycerine',
-    image: '/category/2.avif',
-    count: '5 Products',
+    image: '/category/cat3.png',
+    count: '1 Products',
   },
   {
     id: 'toilet-cleaners',
     name: 'Toilet Cleaners',
-    tagline: 'Liquids, gels & drop-in tablets',
-    image: '/category/3.jpg',
-    count: '4 Products',
-  },
-  {
-    id: 'household-care',
-    name: 'Household Care',
-    tagline: 'Floor, glass, kitchen & more',
-    image: '/category/4.avif',
-    count: '5 Products',
+    tagline: 'Liquids & gels',
+    image: '/category/cat4.png',
+    count: '1 Products',
   },
 ];
 
@@ -66,24 +66,19 @@ function CategoryCard({ cat, className = '' }) {
       <img
         src={cat.image}
         alt={cat.name}
-        className="absolute inset-0 w-full h-full object-fill transition-transform duration-700 group-hover:scale-110"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
 
       {/* Base dark gradient */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
-      {/* Teal tint on hover */}
+      {/* Blue tint on hover */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
           background: `linear-gradient(180deg, ${FRESH}00 0%, ${FRESH}22 100%)`,
         }}
       />
-
-      {/* Count chip */}
-      <span className="absolute top-5 right-5 text-[10px] font-semibold tracking-[0.2em] uppercase px-3 py-1.5 rounded-full bg-white/95 backdrop-blur-sm text-gray-900 shadow-sm">
-        {cat.count}
-      </span>
 
       {/* Bottom content */}
       <div className="absolute left-0 right-0 bottom-0 p-6 lg:p-7">
@@ -95,10 +90,6 @@ function CategoryCard({ cat, className = '' }) {
         <h3 className="text-xl lg:text-2xl font-semibold text-white leading-snug mb-2 tracking-tight">
           {cat.name}
         </h3>
-
-        <p className="text-[13px] text-white/70 leading-relaxed mb-5 line-clamp-2">
-          {cat.tagline}
-        </p>
 
         <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-white transition-all duration-300 group-hover:gap-3">
           <span
@@ -121,7 +112,6 @@ function CategoryCard({ cat, className = '' }) {
 
 export default function ShopByCategory({
   heading = 'Choose by category',
-  subtitle = 'Find exactly what your home needs — from weekly laundry to a full Sunday deep clean.',
   categories = CATEGORIES,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -134,33 +124,29 @@ export default function ShopByCategory({
       (prev) => (prev - 1 + categories.length) % categories.length
     );
 
+  // Split heading into "Choose by" + "category" for two-tone styling
+  const headingParts = heading.split(' ');
+  const lastWord = headingParts.pop();
+  const leadingWords = headingParts.join(' ');
+
   return (
     <section className="relative w-full py-8 lg:py-12 bg-white overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        {/* ─── Header ─── */}
-        <div className="grid lg:grid-cols-12 gap-6 lg:gap-16 items-end mb-12 lg:mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7 }}
-            className="lg:col-span-7"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
-             Choose by <span className='text-[#14B8A6]'>category</span>
-            </h2>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-5 text-gray-600 leading-relaxed"
-          >
-            {subtitle}
-          </motion.p>
-        </div>
+        {/* ═══════════════════════════════════════════════════
+            HEADER — centered, no description
+        ═══════════════════════════════════════════════════ */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.7 }}
+          className="text-center max-w-3xl mx-auto mb-12 lg:mb-14"
+        >
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight">
+            {leadingWords}{' '}
+            <span style={{ color: FRESH }}>{lastWord}</span>
+          </h2>
+        </motion.div>
 
         {/* ═══════════════════════════════════════════════════════
             DESKTOP — 4-column grid
@@ -278,9 +264,9 @@ export default function ShopByCategory({
         >
           <Link
             href="/all-products"
-            className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-gray-200 hover:border-[#14B8A6]/50 hover:bg-[#14B8A6]/[0.04] transition-all duration-300"
+            className="group inline-flex items-center gap-3 px-7 py-3.5 rounded-full border border-gray-200 hover:border-[#0292FD]/50 hover:bg-[#0292FD]/[0.04] transition-all duration-300"
           >
-            <span className="text-sm font-semibold text-gray-900 group-hover:text-[#14B8A6] transition-colors">
+            <span className="text-sm font-semibold text-gray-900 group-hover:text-[#0292FD] transition-colors">
               View all products
             </span>
             <span

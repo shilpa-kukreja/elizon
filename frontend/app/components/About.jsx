@@ -11,10 +11,11 @@ import {
 } from "react-icons/hi";
 
 // ─── Palette ────────────────────────────────────────────────
-const BRAND = "#0A367D";   // trust anchor
-const FRESH = "#14B8A6";   // fresh accent — the "clean" colour
-const FRESH_SOFT = "rgba(20, 184, 166, 0.10)";
-const FRESH_LINE = "rgba(20, 184, 166, 0.30)";
+const BRAND = "#0A367D";                       // trust anchor
+const FRESH = "#0292FD";                       // fresh accent — the new blue
+const FRESH_SOFT = "rgba(2, 146, 253, 0.10)";
+const FRESH_LINE = "rgba(2, 146, 253, 0.30)";
+const FRESH_DARK = "#0273C9";                  // hover state — darker blue
 
 /* ---------- Animation Variants ---------- */
 const container = {
@@ -93,40 +94,12 @@ function Bubbles() {
     { top: "48%", left: "48%", size: 14 },
   ];
 
-  return (
-    // <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    //   {dots.map((p, i) => (
-    //     <span
-    //       key={i}
-    //       className="absolute rounded-full"
-    //       style={{
-    //         top: p.top,
-    //         left: p.left,
-    //         width: p.size,
-    //         height: p.size,
-    //         background: `radial-gradient(circle at 30% 30%, rgba(20,184,166,0.20), rgba(20,184,166,0.02))`,
-    //         border: `1px solid ${FRESH_LINE}`,
-    //       }}
-    //     />
-    //   ))}
-    // </div>
-    <></>
-  );
+  return <></>;
 }
 
 export default function About() {
   return (
     <section className="relative py-8 lg:py-12 bg-gray-100 overflow-hidden">
-      {/* Soft background glows */}
-      {/* <div
-        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: `${FRESH}14` }}
-      />
-      <div
-        className="absolute -bottom-40 -right-40 w-[500px] h-[500px] rounded-full blur-3xl pointer-events-none"
-        style={{ background: `${BRAND}0d` }}
-      /> */}
-
       <Bubbles />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
@@ -141,15 +114,6 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-14 lg:mb-20"
         >
-          {/* <motion.span
-            variants={fadeUp}
-            className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-5"
-            style={{ color: FRESH }}
-          >
-            <span className="w-6 h-px" style={{ background: FRESH }} />
-            About Elizon
-          </motion.span> */}
-
           <motion.h2
             variants={fadeUp}
             className="text-3xl md:text-4xl lg:text-5xl font-semibold text-gray-900 leading-[1.1] tracking-tight"
@@ -157,15 +121,6 @@ export default function About() {
             Powerful cleaning for{" "}
             <span style={{ color: FRESH }}>everyday freshness</span>.
           </motion.h2>
-
-          {/* <motion.p
-            variants={fadeUp}
-            className="text-gray-600 mt-5 text-base lg:text-lg leading-relaxed max-w-2xl mx-auto"
-          >
-            Elizon makes dependable detergents, soaps, and toilet cleaners
-            designed around real homes — effective enough to trust, gentle
-            enough to use every day.
-          </motion.p> */}
         </motion.div>
 
         {/* ═══════════════════════════════════════════════════════
@@ -173,7 +128,7 @@ export default function About() {
         ═══════════════════════════════════════════════════════ */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-          {/* ─── IMAGE with floating quality badge ─── */}
+          {/* ─── IMAGE ─── */}
           <motion.div
             variants={scaleIn}
             initial="hidden"
@@ -181,17 +136,13 @@ export default function About() {
             viewport={{ once: true }}
             className="relative"
           >
-            {/* Main image */}
             <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(15,23,42,0.12)] ring-1 ring-gray-100">
               <img
-                src="/about/about.png"
+                src="/about/about.jpg"
                 alt="Elizon cleaning products"
                 className="w-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
-
-           
-          
           </motion.div>
 
           {/* ─── CONTENT ─── */}
@@ -279,7 +230,15 @@ export default function About() {
               {MINI_RANGES.map((r) => (
                 <span
                   key={r.label}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[12px] font-medium text-gray-700 border border-gray-200 bg-white hover:border-[#14B8A6]/40 hover:text-[#14B8A6] transition-colors duration-300"
+                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[12px] font-medium text-gray-700 border border-gray-200 bg-white transition-colors duration-300"
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = `${FRESH}66`;
+                    e.currentTarget.style.color = FRESH;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "#e5e7eb";
+                    e.currentTarget.style.color = "";
+                  }}
                 >
                   <span className="text-sm">{r.emoji}</span>
                   {r.label}
@@ -288,7 +247,10 @@ export default function About() {
             </motion.div>
 
             {/* ─── CTA ─── */}
-            <motion.div variants={fadeUp} className="pt-4 flex flex-wrap items-center gap-4">
+            <motion.div
+              variants={fadeUp}
+              className="pt-4 flex flex-wrap items-center gap-4"
+            >
               <Link
                 href="/about"
                 className="group relative overflow-hidden inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-white font-medium text-sm tracking-wide shadow-lg transition-all duration-300"
@@ -297,7 +259,7 @@ export default function About() {
                   boxShadow: `0 10px 30px ${FRESH}40`,
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = "#0D9488";
+                  e.currentTarget.style.background = FRESH_DARK;
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.background = FRESH;
@@ -313,10 +275,25 @@ export default function About() {
 
               <Link
                 href="/all-products"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-[#14B8A6] transition-colors"
+                className="group inline-flex items-center gap-2 text-sm font-semibold text-gray-700 transition-colors"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = FRESH;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = "";
+                }}
               >
                 Browse products
-                <span className="w-6 h-px bg-gray-300 group-hover:bg-[#14B8A6] group-hover:w-10 transition-all duration-300" />
+                <span
+                  className="w-6 h-px bg-gray-300 group-hover:w-10 transition-all duration-300"
+                  style={{ transitionProperty: "all" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = FRESH;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "";
+                  }}
+                />
               </Link>
             </motion.div>
           </motion.div>

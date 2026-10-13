@@ -17,7 +17,8 @@ import {
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
+const FRESH = '#0292FD';
+const FRESH_DARK = '#0273C9';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -49,7 +50,7 @@ export default function Footer() {
         { name: 'Detergents', href: '/all-products?category=detergents' },
         { name: 'Soaps & Handwash', href: '/all-products?category=soaps' },
         { name: 'Toilet Cleaners', href: '/all-products?category=toilet-cleaners' },
-        { name: 'Household Care', href: '/all-products?category=household-care' },
+        { name: 'Dishwash', href: '/all-products?category=dishwash' },
         { name: 'All Products', href: '/all-products' },
       ],
     },
@@ -210,7 +211,7 @@ export default function Footer() {
         </div>
 
         {/* ═══════════════════════════════════════════════════════
-            TAG RAIL — horizontal marquee
+            TAG RAIL — currently commented out
         ═══════════════════════════════════════════════════════ */}
         {/* <div className="relative border-t border-b border-white/[0.08] py-6 overflow-hidden">
           <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#030712] to-transparent z-10" />
@@ -235,10 +236,8 @@ export default function Footer() {
         {/* ═══════════════════════════════════════════════════════
             BOTTOM BAR
         ═══════════════════════════════════════════════════════ */}
-
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 border-t border-b border-white/[0.1]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 py-7">
-            
             <p className="text-xs text-gray-500 tracking-wide order-2 md:order-1">
               © {currentYear} Elizon. All rights reserved.
             </p>
@@ -271,15 +270,24 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-5 text-xs text-gray-500 order-3">
-              <Link className="hover:text-white transition-colors" href="/privacy-policy">
+              <Link
+                className="hover:text-white transition-colors"
+                href="/privacy-policy"
+              >
                 Privacy
               </Link>
               <span className="w-px h-3 bg-white/10" />
-              <Link className="hover:text-white transition-colors" href="/terms">
+              <Link
+                className="hover:text-white transition-colors"
+                href="/terms"
+              >
                 Terms
               </Link>
               <span className="w-px h-3 bg-white/10" />
-              <Link className="hover:text-white transition-colors" href="/contact">
+              <Link
+                className="hover:text-white transition-colors"
+                href="/contact"
+              >
                 Support
               </Link>
             </div>
@@ -287,66 +295,74 @@ export default function Footer() {
         </div>
 
         {/* Keyframes */}
-   <style jsx global>{`
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
+        <style jsx global>{`
+          @keyframes marquee {
+            from {
+              transform: translateX(0);
+            }
+            to {
+              transform: translateX(-50%);
+            }
+          }
 
-  /* ─── Inner halo (inside the circle) ─── */
-  @keyframes elizon-halo {
-    0%, 100% {
-      opacity: 0.45;
-      transform: scale(0.85);
-    }
-    50% {
-      opacity: 0.85;
-      transform: scale(1.1);
-    }
-  }
+          /* ─── Inner halo (inside the circle) ─── */
+          @keyframes elizon-halo {
+            0%, 100% {
+              opacity: 0.45;
+              transform: scale(0.85);
+            }
+            50% {
+              opacity: 0.85;
+              transform: scale(1.1);
+            }
+          }
 
-  /* ─── Inner halo on hover ─── */
-  @keyframes elizon-halo-hover {
-    0%, 100% {
-      opacity: 0.7;
-      transform: scale(0.95);
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.2);
-    }
-  }
+          /* ─── Inner halo on hover ─── */
+          @keyframes elizon-halo-hover {
+            0%, 100% {
+              opacity: 0.7;
+              transform: scale(0.95);
+            }
+            50% {
+              opacity: 1;
+              transform: scale(1.2);
+            }
+          }
 
-  /* ─── Inner ring that pulses (contained) ─── */
-  @keyframes elizon-inner-ring {
-    0%, 100% {
-      opacity: 0.25;
-      transform: scale(0.75);
-    }
-    50% {
-      opacity: 0.6;
-      transform: scale(1);
-    }
-  }
+          /* ─── Inner ring that pulses (contained) ─── */
+          @keyframes elizon-inner-ring {
+            0%, 100% {
+              opacity: 0.25;
+              transform: scale(0.75);
+            }
+            50% {
+              opacity: 0.6;
+              transform: scale(1);
+            }
+          }
 
-  /* ─── Inner ring on hover ─── */
-  @keyframes elizon-inner-ring-hover {
-    0%, 100% {
-      opacity: 0.4;
-      transform: scale(0.85);
-    }
-    50% {
-      opacity: 0.85;
-      transform: scale(1);
-    }
-  }
+          /* ─── Inner ring on hover ─── */
+          @keyframes elizon-inner-ring-hover {
+            0%, 100% {
+              opacity: 0.4;
+              transform: scale(0.85);
+            }
+            50% {
+              opacity: 0.85;
+              transform: scale(1);
+            }
+          }
 
-  @media (prefers-reduced-motion: reduce) {
-    .animate-\\[marquee_40s_linear_infinite\\] { animation: none; }
-    .elizon-halo,
-    .elizon-inner-ring { animation: none !important; }
-  }
-`}</style>
+          @media (prefers-reduced-motion: reduce) {
+            .animate-\\[marquee_40s_linear_infinite\\] {
+              animation: none;
+            }
+            .elizon-halo,
+            .elizon-inner-ring {
+              animation: none !important;
+            }
+          }
+        `}</style>
       </footer>
 
       {/* ═══════════════════════════════════════════════════════
@@ -401,8 +417,8 @@ function FloatingActions() {
       label: 'Call us now',
       href: 'tel:+919876543210',
       bg: FRESH,
-      bgHover: '#0D9488',
-      glow: 'rgba(20, 184, 166, 0.45)',
+      bgHover: FRESH_DARK,
+      glow: 'rgba(2, 146, 253, 0.45)',
       icon: <HiOutlinePhone className="text-lg" />,
     },
   ];
@@ -461,9 +477,6 @@ function FloatingActions() {
 }
 
 /* ============================================================
-   FLOATING BUTTON — reusable with continuous animation
-============================================================ */
-/* ============================================================
    FLOATING BUTTON — glow contained inside the circle
 ============================================================ */
 function FloatingButton({
@@ -486,7 +499,6 @@ function FloatingButton({
     transform: hovered
       ? 'translateY(-2px) scale(1.05)'
       : 'translateY(0) scale(1)',
-    // Outer soft drop — still allowed but subtle
     boxShadow: hovered
       ? `0 10px 24px ${glow}`
       : `0 6px 16px ${glow}`,
@@ -502,7 +514,7 @@ function FloatingButton({
 
   const inner = (
     <>
-      {/* ─── Base colour fill ─── */}
+      {/* Base colour fill */}
       <span
         className="absolute inset-0 rounded-full"
         style={{
@@ -511,7 +523,7 @@ function FloatingButton({
         }}
       />
 
-      {/* ─── Inner pulse halo (contained inside circle) ─── */}
+      {/* Inner pulse halo */}
       {continuous && (
         <span
           aria-hidden="true"
@@ -525,7 +537,7 @@ function FloatingButton({
         />
       )}
 
-      {/* ─── Icon with its own glow ─── */}
+      {/* Icon with glow */}
       <span
         className="relative z-10 grid place-items-center w-full h-full"
         style={{
@@ -535,7 +547,7 @@ function FloatingButton({
         {children}
       </span>
 
-      {/* ─── Subtle inner ring that pulses (contained) ─── */}
+      {/* Inner ring that pulses */}
       {continuous && (
         <span
           aria-hidden="true"
@@ -549,7 +561,7 @@ function FloatingButton({
         />
       )}
 
-      {/* ─── Tooltip ─── */}
+      {/* Tooltip */}
       <span
         role="tooltip"
         className="pointer-events-none absolute right-full top-1/2 -translate-y-1/2 mr-3 whitespace-nowrap rounded-full bg-[#030712] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300"
