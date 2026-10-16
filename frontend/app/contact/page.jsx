@@ -139,7 +139,7 @@ export default function ContactPage() {
       <section className="relative w-full overflow-hidden">
         <img
           src="/contact/banner.jpeg"
-          alt="Contact Elizon"
+          alt="Contact Full Klein"
           className="w-full h-auto block"
         />
         <div
@@ -548,7 +548,7 @@ export default function ContactPage() {
 
           <div className="relative rounded-3xl overflow-hidden border border-gray-100 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
             <iframe
-              title="Elizon location"
+              title="Full Klein location"
               src="https://www.google.com/maps?q=Noida+Sector+63&output=embed"
               width="100%"
               height="460"

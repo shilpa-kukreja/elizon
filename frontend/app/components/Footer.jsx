@@ -106,7 +106,7 @@ export default function Footer() {
               >
                 <img
                   src="/logo/elizon.png"
-                  alt="Elizon"
+                  alt="Full Klein"
                   className="h-10 sm:h-24 justify-center w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
                 />
               </Link>
@@ -240,7 +240,7 @@ export default function Footer() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 border-t border-b border-white/[0.1]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 py-7">
             <p className="text-xs text-gray-500 tracking-wide order-2 md:order-1">
-              © {currentYear} Elizon. All rights reserved.
+              © {currentYear} Full Klein. All rights reserved.
             </p>
 
             <div className="flex items-center gap-3 order-1 md:order-2">
@@ -411,7 +411,7 @@ function FloatingActions() {
       href:
         "https://wa.me/919876543210?text=" +
         encodeURIComponent(
-          "Hi Elizon, I would like to know more about your products.",
+          "Hi Full Klein, I would like to know more about your products.",
         ),
       target: "_blank",
       bg: "#25D366",

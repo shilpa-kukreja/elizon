@@ -48,7 +48,7 @@ const TESTIMONIALS = [
     company: "Gurugram",
     rating: 5,
     content:
-      "We switched to Elizon\u2019s dishwash gel for our kitchen and the difference was immediate — cuts grease faster and lasts twice as long as what we used before.",
+      "We switched to Full kelin\u2019s dishwash gel for our kitchen and the difference was immediate — cuts grease faster and lasts twice as long as what we used before.",
     image: "/testimonials/2.jpg",
   },
   {
@@ -58,7 +58,7 @@ const TESTIMONIALS = [
     company: "Pune",
     rating: 5,
     content:
-      "I recommend Elizon\u2019s gentle handwash to parents concerned about skin sensitivity. It cleans well without drying out little hands — a genuine relief for families.",
+      "I recommend Full Klein\u2019s gentle handwash to parents concerned about skin sensitivity. It cleans well without drying out little hands — a genuine relief for families.",
     image: "/testimonials/3.jpg",
   },
   {
@@ -68,7 +68,7 @@ const TESTIMONIALS = [
     company: "Delhi",
     rating: 4,
     content:
-      "Between work and two kids, my cleaning routine has to be quick. Elizon\u2019s toilet cleaner and multi-surface spray make the daily wipe-down genuinely effortless.",
+      "Between work and two kids, my cleaning routine has to be quick. Full Klein\u2019s toilet cleaner and multi-surface spray make the daily wipe-down genuinely effortless.",
     image: "/testimonials/4.jpeg",
   },
   {
@@ -78,7 +78,7 @@ const TESTIMONIALS = [
     company: "Ahmedabad",
     rating: 5,
     content:
-      "We use Elizon products across a 200-person office. The floor cleaner leaves no streaks, the toilet care keeps washrooms fresh all day, and the pricing is fair for the quality.",
+      "We use Full Klein products across a 200-person office. The floor cleaner leaves no streaks, the toilet care keeps washrooms fresh all day, and the pricing is fair for the quality.",
     image: "/testimonials/5.jpg",
   },
   {
@@ -88,7 +88,7 @@ const TESTIMONIALS = [
     company: "Bengaluru",
     rating: 5,
     content:
-      "For a school with 800 children, hygiene matters. Elizon\u2019s antibacterial soaps and sanitisers have become part of our daily routine — reliable and gentle on skin.",
+      "For a school with 800 children, hygiene matters. Full Klein\u2019s antibacterial soaps and sanitisers have become part of our daily routine — reliable and gentle on skin.",
     image: "/testimonials/6.jpg",
   },
 ];
@@ -280,7 +280,7 @@ export default function Testimonials() {
               className="text-gray-600 text-[15px] leading-relaxed max-w-md mb-7"
             >
               Real feedback from real homes — mothers, home chefs, teachers, and
-              facility managers who trust Elizon for their everyday cleaning.
+              facility managers who trust Full Klein for their everyday cleaning.
             </motion.p>
 
             {/* Quick stats strip */}

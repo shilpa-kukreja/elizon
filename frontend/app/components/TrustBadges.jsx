@@ -64,7 +64,7 @@ const BADGES = [
 
 export default function TrustBadges({
   heading = 'Trusted quality ',
-  subtitle = 'Every Elizon product is backed by testing, safety standards, and a promise of consistent performance.',
+  subtitle = 'Every Full Klein product is backed by testing, safety standards, and a promise of consistent performance.',
   badges = BADGES,
   background = 'white', // 'white' | 'gray' | 'dark'
 }) {

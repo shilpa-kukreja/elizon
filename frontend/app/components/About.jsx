@@ -139,7 +139,7 @@ export default function About() {
             <div className="relative rounded-3xl overflow-hidden shadow-[0_20px_60px_rgba(15,23,42,0.12)] ring-1 ring-gray-100">
               <img
                 src="/about/about.jpg"
-                alt="Elizon cleaning products"
+                alt="Full kelin cleaning products"
                 className="w-full object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
@@ -171,7 +171,7 @@ export default function About() {
               variants={fadeRight}
               className="text-gray-600 leading-relaxed"
             >
-              Elizon is a homegrown cleaning brand focused on making everyday
+              Full Klein is a homegrown cleaning brand focused on making everyday
               care simpler. Our range — from liquid detergents and
               moisturising soaps to powerful toilet cleaners — is formulated
               for the way families actually live: fast, messy, and beautifully

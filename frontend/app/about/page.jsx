@@ -58,33 +58,33 @@ const PRODUCT_RANGE = [
     tint: "#DBEAFE",
   },
   {
-    emoji: "🧼",
-    name: "Soaps & Handwash",
-    text: "Moisturising, antibacterial & glycerine bars and liquids.",
-    tint: "#DCFCE7",
-  },
-  {
-    emoji: "🚿",
-    name: "Toilet Cleaners",
-    text: "Thick liquids, gels & drop-in tablets for a spotless bowl.",
+    emoji: "💧",
+    name: "Flush Tablet",
+    text: "Drop-in tablets that keep the toilet bowl clean and fresh for up to 30 days.",
     tint: "#CFFAFE",
   },
   {
-    emoji: "🏠",
-    name: "Household Care",
-    text: "Floor, glass, kitchen & multi-surface cleaning essentials.",
+    emoji: "🚿",
+    name: "Toilet Cleaner",
+    text: "Thick liquids and gels that dissolve stains, kill 99.9% germs, and leave lasting freshness.",
+    tint: "#DCFCE7",
+  },
+  {
+    emoji: "🍽️",
+    name: "Dish Wash",
+    text: "Concentrated gel that cuts through grease on contact and rinses spotless.",
     tint: "#FEF3C7",
   },
   {
-    emoji: "🌿",
-    name: "Eco Range",
-    text: "Plant-based, biodegradable formulas for eco-conscious homes.",
+    emoji: "🧴",
+    name: "Hand Wash",
+    text: "Gentle, pH-balanced handwash with aloe vera that cleans without drying skin.",
     tint: "#D1FAE5",
   },
   {
-    emoji: "🧴",
-    name: "Personal Care",
-    text: "Body wash, shampoo & hand sanitiser for daily hygiene.",
+    emoji: "🧼",
+    name: "Soaps",
+    text: "Moisturising bath bars with shea butter, glycerine, and long-lasting fragrance.",
     tint: "#FCE7F3",
   },
 ];
@@ -167,7 +167,7 @@ export default function AboutPage() {
       <section className="relative w-full overflow-hidden">
         <img
           src="/about/banner.jpeg"
-          alt="About Elizon"
+          alt="About Full Klein"
           className="w-full object-cover block"
         />
         {/* subtle fresh overlay tint */}
@@ -200,7 +200,7 @@ export default function AboutPage() {
 
               <div className="space-y-5 text-gray-600 leading-relaxed max-w-2xl">
                 <p>
-                  Elizon is a homegrown cleaning-products brand built on one
+                  Full Klein is a homegrown cleaning-products brand built on one
                   belief: everyday cleaning should be effective, safe, and
                   actually enjoyable. From the first scoop of detergent powder
                   in 1999 to a full range of soaps, toilet cleaners, and
@@ -209,7 +209,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  Every product that carries the Elizon name is developed with
+                  Every product that carries the Full Klein name is developed with
                   careful formulation, tested for real-world performance, and
                   packed to stay fresh on your shelf. Whether it&apos;s the
                   weekly laundry load, a quick bathroom refresh, or a full
@@ -287,7 +287,7 @@ export default function AboutPage() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="lg:col-span-5 text-gray-600 leading-relaxed"
             >
-              From laundry to bathrooms, kitchen to personal care — Elizon has a
+              From laundry to bathrooms, kitchen to personal care — Full Klein has a
               thoughtfully formulated solution for every cleaning job.
             </motion.p>
           </div>
@@ -560,7 +560,7 @@ export default function AboutPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-base lg:text-lg text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            Explore Elizon&apos;s range of detergents, soaps, toilet cleaners,
+            Explore Full Klein&apos;s range of detergents, soaps, toilet cleaners,
             and everyday household essentials — designed for modern homes and
             real families.
           </motion.p>

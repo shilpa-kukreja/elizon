@@ -22,7 +22,7 @@ const COPIES = 4;
 
 export default function MarketplaceMarquee({
   heading = 'Also ',
-  subtitle = "Find Elizon products on India's most trusted marketplaces and quick-commerce platforms.",
+  subtitle = "Find Full Klein products on India's most trusted marketplaces and quick-commerce platforms.",
   marketplaces = MARKETPLACES,
   speed = 40, // seconds per full set pass
 }) {
