@@ -1,75 +1,82 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   FaArrowUp,
   FaFacebookF,
   FaInstagram,
   FaWhatsapp,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 import {
   HiOutlinePhone,
   HiOutlineMail,
   HiOutlineLocationMarker,
   HiArrowRight,
-} from 'react-icons/hi';
+} from "react-icons/hi";
 
 // ─── Palette ────────────────────────────────────────────────
-const BRAND = '#0A367D';
-const FRESH = '#0292FD';
-const FRESH_DARK = '#0273C9';
+const BRAND = "#0A367D";
+const FRESH = "#0292FD";
+const FRESH_DARK = "#0273C9";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
 
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (!email.trim()) return;
     setSubscribed(true);
-    setEmail('');
+    setEmail("");
     setTimeout(() => setSubscribed(false), 4000);
   };
 
   const groups = [
     {
-      heading: 'Company',
+      heading: "Company",
       links: [
-        { name: 'Home', href: '/' },
-        { name: 'About Us', href: '/about' },
-        { name: 'All Products', href: '/all-products' },
+        { name: "Home", href: "/" },
+        { name: "About Us", href: "/about" },
+        { name: "All Products", href: "/all-products" },
         // { name: 'Blog', href: '/blogs' },
-        { name: 'Contact Us', href: '/contact' },
+        { name: "Contact Us", href: "/contact" },
       ],
     },
     {
-      heading: 'Categories',
+      heading: "Categories",
       links: [
-        { name: 'Detergents', href: '/all-products?category=detergents' },
-        { name: 'Soaps & Handwash', href: '/all-products?category=soaps' },
-        { name: 'Toilet Cleaners', href: '/all-products?category=toilet-cleaners' },
-        { name: 'Dishwash', href: '/all-products?category=dishwash' },
-        { name: 'All Products', href: '/all-products' },
+        { name: "Detergents", href: "/all-products?category=detergents" },
+        { name: "Soaps & Handwash", href: "/all-products?category=soaps" },
+        {
+          name: "Toilet Cleaners",
+          href: "/all-products?category=toilet-cleaners",
+        },
+        { name: "Dishwash", href: "/all-products?category=dishwash" },
+        { name: "All Products", href: "/all-products" },
       ],
     },
   ];
 
   const tagRail = [
-    'Powerful Cleaning',
-    'Fresh & Hygienic',
-    'Laundry Care',
-    'Bathroom Care',
-    'Everyday Hygiene',
-    'Quality Products',
-    'Long-Lasting Freshness',
-    'Trusted Cleaning Solutions',
+    "Powerful Cleaning",
+    "Fresh & Hygienic",
+    "Laundry Care",
+    "Bathroom Care",
+    "Everyday Hygiene",
+    "Quality Products",
+    "Long-Lasting Freshness",
+    "Trusted Cleaning Solutions",
   ];
 
   const socials = [
-    { icon: FaFacebookF, href: 'https://www.facebook.com/', label: 'Facebook' },
-    { icon: FaInstagram, href: 'https://www.instagram.com/', label: 'Instagram' },
+    { icon: FaFacebookF, href: "https://www.facebook.com/", label: "Facebook" },
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/",
+      label: "Instagram",
+    },
     // { icon: FaWhatsapp, href: 'https://wa.me/919876543210', label: 'WhatsApp' },
   ];
 
@@ -93,21 +100,15 @@ export default function Footer() {
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 py-14 lg:py-16">
             {/* Left: brand */}
             <div className="lg:col-span-4">
-              <Link href="/" className="inline-flex items-center gap-3 mb-6 group">
-                <span className="relative w-8 h-8 grid place-items-center">
-                  <span
-                    className="absolute inset-0 rounded-lg border-[1.5px] transition-transform duration-500 group-hover:rotate-45"
-                    style={{ borderColor: FRESH }}
-                  />
-                  <span
-                    className="absolute inset-0 rounded-lg rotate-45 transition-transform duration-500 group-hover:rotate-0"
-                    style={{ borderColor: `${FRESH}66` }}
-                  />
-                </span>
-
-                <span className="text-lg font-semibold tracking-[0.28em] uppercase">
-                  Eli<span style={{ color: FRESH }}>z</span>on
-                </span>
+              <Link
+                href="/"
+                className="inline-flex items-center mb-6 bg-[#ffffff]"
+              >
+                <img
+                  src="/logo/elizon.png"
+                  alt="Elizon"
+                  className="h-10 sm:h-24 justify-center w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
+                />
               </Link>
 
               <p className="text-gray-400 text-sm leading-relaxed max-w-xs mb-6">
@@ -253,14 +254,16 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     aria-label={s.label}
                     className="w-9 h-9 grid place-items-center rounded-full border border-white/10 text-gray-400 hover:text-white transition-all duration-300 hover:-translate-y-0.5"
-                    style={{ background: 'rgba(255,255,255,0.03)' }}
+                    style={{ background: "rgba(255,255,255,0.03)" }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = FRESH;
                       e.currentTarget.style.borderColor = FRESH;
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255,255,255,0.03)';
-                      e.currentTarget.style.borderColor = 'rgba(255,255,255,0.10)';
+                      e.currentTarget.style.background =
+                        "rgba(255,255,255,0.03)";
+                      e.currentTarget.style.borderColor =
+                        "rgba(255,255,255,0.10)";
                     }}
                   >
                     <Icon className="text-sm" />
@@ -307,7 +310,8 @@ export default function Footer() {
 
           /* ─── Inner halo (inside the circle) ─── */
           @keyframes elizon-halo {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.45;
               transform: scale(0.85);
             }
@@ -319,7 +323,8 @@ export default function Footer() {
 
           /* ─── Inner halo on hover ─── */
           @keyframes elizon-halo-hover {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.7;
               transform: scale(0.95);
             }
@@ -331,7 +336,8 @@ export default function Footer() {
 
           /* ─── Inner ring that pulses (contained) ─── */
           @keyframes elizon-inner-ring {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.25;
               transform: scale(0.75);
             }
@@ -343,7 +349,8 @@ export default function Footer() {
 
           /* ─── Inner ring on hover ─── */
           @keyframes elizon-inner-ring-hover {
-            0%, 100% {
+            0%,
+            100% {
               opacity: 0.4;
               transform: scale(0.85);
             }
@@ -388,37 +395,37 @@ function FloatingActions() {
   useEffect(() => {
     const onScroll = () => setShowTop(window.scrollY > 400);
     onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Config for each action
   const actions = [
     {
-      key: 'whatsapp',
-      label: 'Chat on WhatsApp',
+      key: "whatsapp",
+      label: "Chat on WhatsApp",
       href:
-        'https://wa.me/919876543210?text=' +
+        "https://wa.me/919876543210?text=" +
         encodeURIComponent(
-          'Hi Elizon, I would like to know more about your products.'
+          "Hi Elizon, I would like to know more about your products.",
         ),
-      target: '_blank',
-      bg: '#25D366',
-      bgHover: '#1EBE5A',
-      glow: 'rgba(37, 211, 102, 0.45)',
+      target: "_blank",
+      bg: "#25D366",
+      bgHover: "#1EBE5A",
+      glow: "rgba(37, 211, 102, 0.45)",
       icon: <FaWhatsapp className="text-lg" />,
     },
     {
-      key: 'call',
-      label: 'Call us now',
-      href: 'tel:+919876543210',
+      key: "call",
+      label: "Call us now",
+      href: "tel:+919876543210",
       bg: FRESH,
       bgHover: FRESH_DARK,
-      glow: 'rgba(2, 146, 253, 0.45)',
+      glow: "rgba(2, 146, 253, 0.45)",
       icon: <HiOutlinePhone className="text-lg" />,
     },
   ];
@@ -429,8 +436,8 @@ function FloatingActions() {
       className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-[60] flex flex-col items-end gap-3 transition-all duration-500"
       style={{
         opacity: mounted ? 1 : 0,
-        transform: mounted ? 'translateY(0)' : 'translateY(12px)',
-        pointerEvents: mounted ? 'auto' : 'none',
+        transform: mounted ? "translateY(0)" : "translateY(12px)",
+        pointerEvents: mounted ? "auto" : "none",
       }}
     >
       {/* WhatsApp + Call buttons */}
@@ -455,9 +462,9 @@ function FloatingActions() {
         style={{
           opacity: showTop ? 1 : 0,
           transform: showTop
-            ? 'translateY(0) scale(1)'
-            : 'translateY(8px) scale(0.9)',
-          pointerEvents: showTop ? 'auto' : 'none',
+            ? "translateY(0) scale(1)"
+            : "translateY(8px) scale(0.9)",
+          pointerEvents: showTop ? "auto" : "none",
         }}
       >
         <FloatingButton
@@ -494,14 +501,12 @@ function FloatingButton({
   const [hovered, setHovered] = useState(false);
 
   const baseClass =
-    'group relative w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full text-white transition-all duration-300 overflow-hidden';
+    "group relative w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full text-white transition-all duration-300 overflow-hidden";
   const baseStyle = {
     transform: hovered
-      ? 'translateY(-2px) scale(1.05)'
-      : 'translateY(0) scale(1)',
-    boxShadow: hovered
-      ? `0 10px 24px ${glow}`
-      : `0 6px 16px ${glow}`,
+      ? "translateY(-2px) scale(1.05)"
+      : "translateY(0) scale(1)",
+    boxShadow: hovered ? `0 10px 24px ${glow}` : `0 6px 16px ${glow}`,
   };
 
   const handlers = {
@@ -509,7 +514,7 @@ function FloatingButton({
     onMouseLeave: () => setHovered(false),
     onFocus: () => setHovered(true),
     onBlur: () => setHovered(false),
-    'aria-label': label,
+    "aria-label": label,
   };
 
   const inner = (
@@ -519,7 +524,7 @@ function FloatingButton({
         className="absolute inset-0 rounded-full"
         style={{
           background: hovered ? bgHover : bg,
-          transition: 'background 0.3s ease',
+          transition: "background 0.3s ease",
         }}
       />
 
@@ -531,8 +536,8 @@ function FloatingButton({
           style={{
             background: `radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 35%, transparent 70%)`,
             animation: hovered
-              ? 'elizon-halo-hover 1.4s ease-in-out infinite'
-              : 'elizon-halo 2.4s ease-in-out infinite',
+              ? "elizon-halo-hover 1.4s ease-in-out infinite"
+              : "elizon-halo 2.4s ease-in-out infinite",
           }}
         />
       )}
@@ -555,8 +560,8 @@ function FloatingButton({
           style={{
             border: `1.5px solid rgba(255,255,255,0.55)`,
             animation: hovered
-              ? 'elizon-inner-ring-hover 1.4s ease-in-out infinite'
-              : 'elizon-inner-ring 2.4s ease-in-out infinite',
+              ? "elizon-inner-ring-hover 1.4s ease-in-out infinite"
+              : "elizon-inner-ring 2.4s ease-in-out infinite",
           }}
         />
       )}
@@ -567,15 +572,13 @@ function FloatingButton({
         className="pointer-events-none absolute right-full top-1/2 -translate-y-1/2 mr-3 whitespace-nowrap rounded-full bg-[#030712] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-white shadow-[0_8px_24px_rgba(0,0,0,0.35)] transition-all duration-300"
         style={{
           opacity: hovered ? 1 : 0,
-          transform: hovered
-            ? 'translate(-2px, -50%)'
-            : 'translate(6px, -50%)',
+          transform: hovered ? "translate(-2px, -50%)" : "translate(6px, -50%)",
         }}
       >
         {label}
         <span
           className="absolute left-full top-1/2 -translate-y-1/2 border-[5px] border-transparent"
-          style={{ borderLeftColor: '#030712' }}
+          style={{ borderLeftColor: "#030712" }}
         />
       </span>
     </>
@@ -599,7 +602,7 @@ function FloatingButton({
     <a
       href={href}
       target={target}
-      rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+      rel={target === "_blank" ? "noopener noreferrer" : undefined}
       className={baseClass}
       style={baseStyle}
       {...handlers}

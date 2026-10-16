@@ -11,8 +11,8 @@ import {
 } from "react-icons/hi";
 
 // ─── Palette ────────────────────────────────────────────────
-const FRESH = "#14B8A6";
-const FRESH_DARK = "#0D9488";
+const FRESH = "#0292FD";
+const FRESH_DARK = "#0273C9";
 
 export default function ProductEnquiryModal({
   isOpen,
@@ -103,7 +103,7 @@ export default function ProductEnquiryModal({
   const inputClass = (name) =>
     `w-full border rounded-xl px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-all duration-300 ${
       focused === name
-        ? "border-[#14B8A6] shadow-[0_0_0_4px_rgba(20,184,166,0.10)]"
+        ? "border-[#0292FD] shadow-[0_0_0_4px_rgba(2,146,253,0.10)]"
         : "border-gray-200 hover:border-gray-300"
     }`;
 
@@ -136,7 +136,7 @@ export default function ProductEnquiryModal({
                 HEADER
             ═══════════════════════════════════════════════════ */}
             <div className="relative px-6 sm:px-8 pt-6 sm:pt-7 pb-5 border-b border-gray-100">
-              {/* Ambient mint glow */}
+              {/* Ambient fresh glow */}
               <div
                 className="absolute -top-16 -right-16 w-40 h-40 rounded-full blur-3xl pointer-events-none opacity-60"
                 style={{ background: `${FRESH}25` }}
@@ -184,7 +184,6 @@ export default function ProductEnquiryModal({
                 BODY (scrollable)
             ═══════════════════════════════════════════════════ */}
             <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-6">
-
               {/* Success / Error banner */}
               {submitMessage && (
                 <motion.div
@@ -214,21 +213,15 @@ export default function ProductEnquiryModal({
                 </motion.div>
               )}
 
-<form
-  id="product-enquiry-form"
-  onSubmit={handleSubmit}
-  className="space-y-5"
->
+              <form
+                id="product-enquiry-form"
+                onSubmit={handleSubmit}
+                className="space-y-5"
+              >
                 {/* Product name (read-only) */}
                 <div>
                   <label className={labelClass}>Product</label>
-                  <div
-                    className="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-gray-200 bg-gray-50"
-                  >
-                    {/* <HiOutlineSparkles
-                      className="text-base shrink-0"
-                      style={{ color: FRESH }}
-                    /> */}
+                  <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl border border-gray-200 bg-gray-50">
                     <span className="text-sm font-medium text-gray-900 truncate">
                       {formData.productName || "—"}
                     </span>
@@ -312,40 +305,40 @@ export default function ProductEnquiryModal({
                 FOOTER — Submit button
             ═══════════════════════════════════════════════════ */}
             <div className="px-6 sm:px-8 py-5 border-t border-gray-100 bg-gray-50/60">
-          <button
-  type="submit"
-  form="product-enquiry-form"
-  disabled={loading}
-  className="group relative w-full inline-flex items-center justify-center overflow-hidden py-3.5 rounded-full text-white text-sm font-semibold tracking-wide transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
-  style={{
-    background: FRESH,
-    boxShadow: `0 12px 32px ${FRESH}40`,
-  }}
-  onMouseEnter={(e) => {
-    if (!loading) e.currentTarget.style.background = FRESH_DARK;
-  }}
-  onMouseLeave={(e) => {
-    if (!loading) e.currentTarget.style.background = FRESH;
-  }}
->
-  <span
-    className="absolute top-0 left-[-120%] h-full w-[40%] animate-shine bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-    aria-hidden="true"
-  />
-  <span className="relative z-10 inline-flex items-center gap-2">
-    {loading ? (
-      <>
-        <span
-          className="inline-block w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"
-          aria-hidden="true"
-        />
-        Submitting...
-      </>
-    ) : (
-      "Submit Enquiry"
-    )}
-  </span>
-</button>
+              <button
+                type="submit"
+                form="product-enquiry-form"
+                disabled={loading}
+                className="group relative w-full inline-flex items-center justify-center overflow-hidden py-3.5 rounded-full text-white text-sm font-semibold tracking-wide transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                style={{
+                  background: FRESH,
+                  boxShadow: `0 12px 32px ${FRESH}40`,
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading) e.currentTarget.style.background = FRESH_DARK;
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading) e.currentTarget.style.background = FRESH;
+                }}
+              >
+                <span
+                  className="absolute top-0 left-[-120%] h-full w-[40%] animate-shine bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                  aria-hidden="true"
+                />
+                <span className="relative z-10 inline-flex items-center gap-2">
+                  {loading ? (
+                    <>
+                      <span
+                        className="inline-block w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin"
+                        aria-hidden="true"
+                      />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit Enquiry"
+                  )}
+                </span>
+              </button>
 
               <p className="text-center text-[11px] text-gray-400 mt-3">
                 We&apos;ll never share your information.

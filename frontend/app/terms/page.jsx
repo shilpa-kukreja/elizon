@@ -18,10 +18,10 @@ import {
 
 // ─── Elizon brand palette ────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
-const FRESH_HOVER = '#0D9488';
-const FRESH_SOFT = 'rgba(20, 184, 166, 0.10)';
-const FRESH_LINE = 'rgba(20, 184, 166, 0.30)';
+const FRESH = '#0292FD';
+const FRESH_HOVER = '#0273C9';
+const FRESH_SOFT = 'rgba(2, 146, 253, 0.10)';
+const FRESH_LINE = 'rgba(2, 146, 253, 0.30)';
 
 // ─── Animation variants ──────────────────────────────────────
 const fadeUp = {
@@ -268,7 +268,7 @@ const SECTIONS = [
   },
 ];
 
-// ─── Shared teal icon container ──────────────────────────────
+// ─── Shared icon container ───────────────────────────────────
 function ContactIcon({ children, interactive = false }) {
   return (
     <span
@@ -330,7 +330,7 @@ export default function TermsConditionsPage() {
 
       {/* ─── HERO ──────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden bg-gray-100 text-gray-900">
-        {/* Soft teal background glow */}
+        {/* Soft fresh background glow */}
         <div
           className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full blur-3xl"
           style={{ background: `${FRESH}14` }}
@@ -358,7 +358,7 @@ export default function TermsConditionsPage() {
             transition={{ duration: 0.6 }}
             className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-gray-500"
           >
-            <Link href="/" className="transition-colors hover:text-[#14B8A6]">
+            <Link href="/" className="transition-colors hover:text-[#0292FD]">
               Home
             </Link>
 
@@ -394,7 +394,7 @@ export default function TermsConditionsPage() {
             returns, and your rights as a customer.
           </motion.p>
 
-          {/* Teal accent line */}
+          {/* Accent line */}
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
@@ -450,7 +450,7 @@ export default function TermsConditionsPage() {
                   {/* Section heading */}
                   <div
                     className="mb-5 flex items-baseline gap-3 border-b pb-4 sm:gap-4"
-                    style={{ borderColor: 'rgba(20, 184, 166, 0.20)' }}
+                    style={{ borderColor: 'rgba(2, 146, 253, 0.20)' }}
                   >
                     <span
                       className="shrink-0 text-[11px] font-semibold tracking-[0.2em]"
@@ -501,7 +501,7 @@ export default function TermsConditionsPage() {
                           className="rounded-xl border p-4 sm:p-5"
                           style={{
                             background: '#F9FAFB',
-                            borderColor: 'rgba(20, 184, 166, 0.16)',
+                            borderColor: 'rgba(2, 146, 253, 0.16)',
                           }}
                         >
                           <h3 className="mb-4 text-[14px] font-semibold text-gray-900 sm:text-[15px]">
@@ -553,7 +553,7 @@ export default function TermsConditionsPage() {
                       {/* Email */}
                       <a
                         href="mailto:info@elizon.in"
-                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#0292FD]/40 hover:shadow-lg sm:p-5"
                       >
                         <ContactIcon interactive>
                           <HiOutlineMail className="text-lg" />
@@ -564,7 +564,7 @@ export default function TermsConditionsPage() {
                             Email
                           </p>
 
-                          <p className="break-all text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
+                          <p className="break-all text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0273C9]">
                             info@elizon.in
                           </p>
                         </div>
@@ -573,7 +573,7 @@ export default function TermsConditionsPage() {
                       {/* Phone */}
                       <a
                         href="tel:+919876543210"
-                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#0292FD]/40 hover:shadow-lg sm:p-5"
                       >
                         <ContactIcon interactive>
                           <HiOutlinePhone className="text-lg" />
@@ -584,7 +584,7 @@ export default function TermsConditionsPage() {
                             Phone
                           </p>
 
-                          <p className="text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
+                          <p className="text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0273C9]">
                             +91 98765 43210
                           </p>
                         </div>
@@ -631,7 +631,7 @@ export default function TermsConditionsPage() {
                   className="group inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                   style={{
                     background: FRESH,
-                    boxShadow: `0 8px 22px rgba(20, 184, 166, 0.18)`,
+                    boxShadow: `0 8px 22px rgba(2, 146, 253, 0.18)`,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = FRESH_HOVER;
@@ -722,8 +722,8 @@ export default function TermsConditionsPage() {
                 </div>
 
                 {/* Support card */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#14B8A6]/20 bg-white p-6 shadow-sm">
-                  {/* Teal decorative glow */}
+                <div className="relative overflow-hidden rounded-2xl border border-[#0292FD]/20 bg-white p-6 shadow-sm">
+                  {/* Decorative glow */}
                   <div
                     className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl"
                     style={{ background: `${FRESH}25` }}

@@ -83,7 +83,7 @@ export default function ProductsContent() {
       ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden">
         <img
-          src="/category/banner.png"
+          src="/products/banner.jpeg"
           alt="Elizon cleaning products"
           className="w-full object-cover object-center block"
         />

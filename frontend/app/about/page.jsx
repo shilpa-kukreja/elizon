@@ -166,7 +166,7 @@ export default function AboutPage() {
       ============================================================ */}
       <section className="relative w-full overflow-hidden">
         <img
-          src="/about/banner.png"
+          src="/about/banner.jpeg"
           alt="About Elizon"
           className="w-full object-cover block"
         />

@@ -138,7 +138,7 @@ export default function ContactPage() {
       ═══════════════════════════════════════════════════════ */}
       <section className="relative w-full overflow-hidden">
         <img
-          src="/contact/banner.png"
+          src="/contact/banner.jpeg"
           alt="Contact Elizon"
           className="w-full h-auto block"
         />

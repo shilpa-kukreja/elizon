@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -19,10 +18,10 @@ import {
 
 // ─── Elizon brand palette ────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
-const FRESH_HOVER = '#0D9488';
-const FRESH_SOFT = 'rgba(20, 184, 166, 0.10)';
-const FRESH_LINE = 'rgba(20, 184, 166, 0.30)';
+const FRESH = '#0292FD';
+const FRESH_HOVER = '#0273C9';
+const FRESH_SOFT = 'rgba(2, 146, 253, 0.10)';
+const FRESH_LINE = 'rgba(2, 146, 253, 0.30)';
 
 // ─── Animation variants ──────────────────────────────────────
 const fadeUp = {
@@ -48,7 +47,7 @@ const SECTIONS = [
     num: '01',
     title: 'Introduction',
     body: [
-      'Elizon ("we", "us", "our") is committed to protecting the privacy and security of the personal information you share with us. This Privacy Policy explains how we collect, use, store, share, and protect information when you visit our website, request a quote, contact our team, or purchase our industrial machinery.',
+      'Elizon ("we", "us", "our") is committed to protecting the privacy and security of the personal information you share with us. This Privacy Policy explains how we collect, use, store, share, and protect information when you visit our website, request a quote, contact our team, or purchase our products.',
       'By using our website or services, you agree to the practices described in this policy. If you do not agree, please discontinue use of our website and services.',
     ],
   },
@@ -63,10 +62,10 @@ const SECTIONS = [
       {
         title: 'Information you provide directly',
         list: [
-          'Contact details such as your name, company name, email address, phone number, and postal address',
-          'Enquiry details submitted through our contact forms, quote requests, or WhatsApp channel',
-          'Technical specifications, drawings, or project details you share for machine configuration',
-          'Communication history including emails, calls, and meeting notes',
+          'Contact details such as your name, email address, phone number, and shipping address',
+          'Enquiry details submitted through our contact forms, product enquiries, or WhatsApp channel',
+          'Order and delivery preferences you share with our team',
+          'Communication history including emails, calls, and messages',
           'Payment and billing information when placing an order',
         ],
       },
@@ -83,10 +82,10 @@ const SECTIONS = [
       {
         title: 'Information from third parties',
         list: [
-          'Business directories and B2B platforms where you have listed your company',
-          'Trade show and event registration systems',
+          'Marketplace platforms such as Amazon, Flipkart, and quick-commerce apps where you have placed an order',
+          'Payment gateway and logistics partners involved in fulfilling your order',
           'Referral partners and channel distributors',
-          'Publicly available sources for company verification',
+          'Publicly available sources for delivery verification',
         ],
       },
     ],
@@ -99,9 +98,9 @@ const SECTIONS = [
       'We use the information we collect only for legitimate business purposes. We do not sell, rent, or trade your personal information to any third party.',
     ],
     list: [
-      'Respond to your enquiries, quote requests, and service tickets',
-      'Process orders and coordinate delivery, installation, and after-sales support',
-      'Provide technical documentation, training, and warranty coverage',
+      'Respond to your enquiries, product questions, and support requests',
+      'Process orders and coordinate delivery and after-sales support',
+      'Provide product information, usage guidance, and warranty coverage',
       'Send transactional communications such as order confirmations and shipping updates',
       'Send marketing communications — only when you have opted in',
       'Improve our website, products, and customer experience',
@@ -117,7 +116,7 @@ const SECTIONS = [
       'We only share your information with parties who help us operate our business, and only to the extent necessary. All such parties are bound by confidentiality and data protection obligations.',
     ],
     list: [
-      'Service providers — logistics partners, installation teams, and payment processors',
+      'Service providers — logistics partners, courier companies, and payment processors',
       'Technology partners — website hosting, email delivery, and CRM systems',
       'Professional advisors — lawyers, auditors, and compliance consultants',
       'Legal authorities — when required by law, court order, or to protect our rights',
@@ -198,7 +197,7 @@ const SECTIONS = [
     num: '10',
     title: "Children's Privacy",
     body: [
-      'Our website and services are intended for business and professional use. We do not knowingly collect personal information from anyone under 16 years of age. If we become aware that such information has been collected, we will delete it promptly.',
+      'Our website and services are intended for general household and consumer use. We do not knowingly collect personal information from anyone under 16 years of age. If we become aware that such information has been collected, we will delete it promptly.',
     ],
   },
   {
@@ -221,7 +220,7 @@ const SECTIONS = [
   },
 ];
 
-// ─── Shared teal icon container ──────────────────────────────
+// ─── Shared icon container ───────────────────────────────────
 function ContactIcon({ children, interactive = false }) {
   return (
     <span
@@ -289,7 +288,7 @@ export default function PrivacyPolicyPage() {
 
       {/* ─── HERO ──────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden bg-gray-100 text-gray-900">
-        {/* Soft teal background glow */}
+        {/* Soft fresh background glow */}
         <div
           className="pointer-events-none absolute -left-40 -top-40 h-[420px] w-[420px] rounded-full blur-3xl"
           style={{ background: `${FRESH}14` }}
@@ -319,7 +318,7 @@ export default function PrivacyPolicyPage() {
           >
             <Link
               href="/"
-              className="transition-colors hover:text-[#14B8A6]"
+              className="transition-colors hover:text-[#0292FD]"
             >
               Home
             </Link>
@@ -333,18 +332,6 @@ export default function PrivacyPolicyPage() {
               Privacy Policy
             </span>
           </motion.div>
-
-          {/* Legal label */}
-          {/* <motion.span
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mb-5 inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.28em]"
-            style={{ color: FRESH }}
-          >
-            <HiOutlineShieldCheck className="text-base" />
-            Legal & Privacy
-          </motion.span> */}
 
           {/* Main heading */}
           <motion.h1
@@ -368,7 +355,7 @@ export default function PrivacyPolicyPage() {
             services.
           </motion.p>
 
-          {/* Teal accent line */}
+          {/* Accent line */}
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
@@ -401,15 +388,6 @@ export default function PrivacyPolicyPage() {
               </span>
             </div>
           </div>
-
-          {/* <button
-            type="button"
-            onClick={handlePrint}
-            className="group inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors hover:text-[#14B8A6]"
-          >
-            <HiOutlinePrinter className="text-base" />
-            Print this page
-          </button> */}
         </div>
       </section>
 
@@ -433,7 +411,7 @@ export default function PrivacyPolicyPage() {
                   {/* Section heading */}
                   <div
                     className="mb-5 flex items-baseline gap-3 border-b pb-4 sm:gap-4"
-                    style={{ borderColor: 'rgba(20, 184, 166, 0.20)' }}
+                    style={{ borderColor: 'rgba(2, 146, 253, 0.20)' }}
                   >
                     <span
                       className="shrink-0 text-[11px] font-semibold tracking-[0.2em]"
@@ -484,7 +462,7 @@ export default function PrivacyPolicyPage() {
                           className="rounded-xl border p-4 sm:p-5"
                           style={{
                             background: '#F9FAFB',
-                            borderColor: 'rgba(20, 184, 166, 0.16)',
+                            borderColor: 'rgba(2, 146, 253, 0.16)',
                           }}
                         >
                           <h3 className="mb-4 text-[14px] font-semibold text-gray-900 sm:text-[15px]">
@@ -536,7 +514,7 @@ export default function PrivacyPolicyPage() {
                       {/* Email */}
                       <a
                         href="mailto:privacy@elizon.in"
-                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#0292FD]/40 hover:shadow-lg sm:p-5"
                       >
                         <ContactIcon interactive>
                           <HiOutlineMail className="text-lg" />
@@ -547,7 +525,7 @@ export default function PrivacyPolicyPage() {
                             Email
                           </p>
 
-                          <p className="break-all text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
+                          <p className="break-all text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0273C9]">
                             privacy@elizon.in
                           </p>
                         </div>
@@ -556,7 +534,7 @@ export default function PrivacyPolicyPage() {
                       {/* Phone */}
                       <a
                         href="tel:+919876543210"
-                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#14B8A6]/40 hover:shadow-lg sm:p-5"
+                        className="group flex min-w-0 flex-col gap-3 rounded-xl border border-gray-100 bg-white p-4 transition-all duration-300 hover:-translate-y-1 hover:border-[#0292FD]/40 hover:shadow-lg sm:p-5"
                       >
                         <ContactIcon interactive>
                           <HiOutlinePhone className="text-lg" />
@@ -567,7 +545,7 @@ export default function PrivacyPolicyPage() {
                             Phone
                           </p>
 
-                          <p className="text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0D9488]">
+                          <p className="text-sm font-medium text-gray-900 transition-colors group-hover:text-[#0273C9]">
                             +91 98765 43210
                           </p>
                         </div>
@@ -604,7 +582,8 @@ export default function PrivacyPolicyPage() {
                   </h3>
 
                   <p className="mt-1 text-sm leading-relaxed text-gray-500">
-                    Our team is here to help with your privacy-related enquiries.
+                    Our team is here to help with your privacy-related
+                    enquiries.
                   </p>
                 </div>
 
@@ -613,7 +592,7 @@ export default function PrivacyPolicyPage() {
                   className="group inline-flex shrink-0 items-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
                   style={{
                     background: FRESH,
-                    boxShadow: `0 8px 22px rgba(20, 184, 166, 0.18)`,
+                    boxShadow: `0 8px 22px rgba(2, 146, 253, 0.18)`,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = FRESH_HOVER;
@@ -704,8 +683,8 @@ export default function PrivacyPolicyPage() {
                 </div>
 
                 {/* Privacy assistance card */}
-                <div className="relative overflow-hidden rounded-2xl border border-[#14B8A6]/20 bg-white p-6 shadow-sm">
-                  {/* Teal decorative glow */}
+                <div className="relative overflow-hidden rounded-2xl border border-[#0292FD]/20 bg-white p-6 shadow-sm">
+                  {/* Decorative glow */}
                   <div
                     className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full blur-3xl"
                     style={{ background: `${FRESH}25` }}

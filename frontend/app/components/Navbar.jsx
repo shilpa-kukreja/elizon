@@ -84,26 +84,17 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-12">
           <div className="flex items-center justify-between h-16 lg:h-[72px] gap-4 lg:gap-6">
             {/* ---------- Logo ---------- */}
-            <Link
-              href="/"
-              aria-label="Elizon home"
-              className="group inline-flex items-center gap-3 shrink-0"
-            >
-              <span className="relative w-[30px] h-[30px] grid place-items-center">
-                <span
-                  className="absolute inset-0 rounded-lg border-[1.5px] transition-transform duration-500 ease-out group-hover:rotate-45"
-                  style={{ borderColor: FRESH }}
-                />
-                <span
-                  className="absolute inset-0 rounded-lg rotate-45 transition-transform duration-500 ease-out group-hover:rotate-0"
-                  style={{ borderColor: `${FRESH}66` }}
-                />
-              </span>
-
-              <span className="text-[17px] sm:text-[19px] font-semibold tracking-[0.24em] sm:tracking-[0.28em] uppercase text-gray-900">
-                Eli<span style={{ color: FRESH }}>z</span>on
-              </span>
-            </Link>
+           <Link
+  href="/"
+  aria-label="Elizon home"
+  className="inline-flex items-center shrink-0"
+>
+  <img
+    src="/logo/elizon.png"
+    alt="Elizon"
+    className="h-16 sm:h-18 w-auto object-contain transition-transform duration-300 hover:scale-[1.02]"
+  />
+</Link>
 
             {/* ---------- Desktop links ---------- */}
             <ul className="hidden lg:flex items-center gap-9 list-none m-0 p-0">
