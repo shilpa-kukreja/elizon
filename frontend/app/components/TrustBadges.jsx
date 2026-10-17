@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 // ─── Palette ────────────────────────────────────────────────
 const BRAND = '#0A367D';
-const FRESH = '#14B8A6';
-const FRESH_SOFT = 'rgba(20, 184, 166, 0.10)';
+const FRESH = '#0292FD';
+const FRESH_SOFT = 'rgba(2, 146, 253, 0.10)';
 
 // ─── Animation ──────────────────────────────────────────────
 const fadeUp = {
@@ -22,7 +22,6 @@ const fadeUp = {
 };
 
 // ─── Badge data ─────────────────────────────────────────────
-// 👉 Just replace `image` with your own file. Text stays the same.
 const BADGES = [
   {
     image: '/trust/1.png',
@@ -78,17 +77,9 @@ export default function TrustBadges({
   const isDark = background === 'dark';
 
   return (
-    <section className={`relative w-full py-8 lg:py-12 overflow-hidden ${bgClass}`}>
-      {/* Soft glows */}
-      {/* <div
-        className="absolute top-0 left-1/4 w-[400px] h-[400px] blur-[120px] rounded-full pointer-events-none"
-        style={{ background: `${FRESH}10` }}
-      />
-      <div
-        className="absolute bottom-0 right-1/4 w-[400px] h-[400px] blur-[120px] rounded-full pointer-events-none"
-        style={{ background: `${BRAND}10` }}
-      /> */}
-
+    <section
+      className={`relative w-full py-8 lg:py-12 overflow-hidden ${bgClass}`}
+    >
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -98,20 +89,13 @@ export default function TrustBadges({
           transition={{ duration: 0.7 }}
           className="max-w-3xl mx-auto text-center mb-12 lg:mb-16"
         >
-          {/* <span
-            className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.28em] uppercase mb-4"
-            style={{ color: FRESH }}
-          >
-            <span className="w-6 h-px" style={{ background: FRESH }} />
-            Our Promise
-          </span> */}
-
           <h2
             className={`text-2xl sm:text-3xl lg:text-5xl font-semibold leading-tight tracking-tight mb-4 ${
               isDark ? 'text-white' : 'text-gray-900'
             }`}
           >
-            {heading} <span className='text-[#0292FD]'>in every pack</span>
+            {heading}{' '}
+            <span style={{ color: FRESH }}>in every pack</span>
           </h2>
 
           <p
@@ -139,9 +123,22 @@ export default function TrustBadges({
               <div
                 className={`relative w-24 h-24 lg:w-32 lg:h-32 grid place-items-center rounded-full transition-all duration-500 group-hover:-translate-y-1 ${
                   isDark
-                    ? 'bg-white/[0.04] border border-white/10 group-hover:bg-white/[0.07] group-hover:border-[#14B8A6]/40'
-                    : 'bg-white border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)] group-hover:shadow-[0_16px_40px_rgba(20,184,166,0.15)] group-hover:border-[#14B8A6]/30'
+                    ? 'bg-white/[0.04] border border-white/10 group-hover:bg-white/[0.07]'
+                    : 'bg-white border border-gray-100 shadow-[0_4px_20px_rgba(15,23,42,0.04)]'
                 }`}
+                style={
+                  isDark
+                    ? undefined
+                    : undefined
+                }
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = `${FRESH}4d`;
+                  e.currentTarget.style.boxShadow = `0 16px 40px rgba(2,146,253,0.15)`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '';
+                  e.currentTarget.style.boxShadow = '';
+                }}
               >
                 <img
                   src={badge.image}
@@ -155,7 +152,13 @@ export default function TrustBadges({
                 <h3
                   className={`text-[13px] lg:text-sm font-semibold leading-snug mb-1 transition-colors duration-300 ${
                     isDark ? 'text-white' : 'text-gray-900'
-                  } group-hover:text-[#14B8A6]`}
+                  }`}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = FRESH;
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = '';
+                  }}
                 >
                   {badge.label}
                 </h3>
